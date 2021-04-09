@@ -1,0 +1,25 @@
+
+  .input_video {
+    position:relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;}
+    .input_video.selfie {
+      transform: scale(-1, 1);
+    }
+  
+  
+  .output_canvas {
+    position:absolute;
+    height: 720px;
+    width: 1280px;
+    left: 0;
+    top: 0;
+  }
+  
+#c{
+    position: absolute;
+    z-index: 1000;
+    transform: translate(-50%, -50%) 
+}
