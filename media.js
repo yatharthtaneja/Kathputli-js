@@ -32,7 +32,7 @@ for (let index = 0; index < results.multiHandLandmarks.length; index++) {
   });
 }
 
-console.log(results.multiHandedness);
+// console.log(results.multiHandedness);
 if(results.multiHandLandmarks.length == 1){
 
 if(results.multiHandedness[0].index==0){ //for left

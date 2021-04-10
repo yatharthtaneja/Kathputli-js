@@ -25,7 +25,7 @@
     function init() {
     
         // const MODEL_PATH = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/1376484/stacy_lightweight.glb';
-        const MODEL_PATH ='./DISTrial.glb';
+        const MODEL_PATH ='img/remote.glb';
         // const canvas = document.querySelector('#c2');
         // const backgroundColor = 0xf1f1f1;
         
@@ -77,16 +77,16 @@
             }
           
             // Reference the neck and waist bones
-            if (o.isBone && o.name === 'mixamorigSpine2') { 
+            if (o.isBone && o.name === 'mixamorigLeftShoulder') { 
                 neck = o;
             }
-            if (o.isBone && o.name === 'mixamorigLeftLeg') { 
+            if (o.isBone && o.name === 'mixamorigRightShoulder') { 
                 waist = o;
             }
         });
 
           // Set the models initial scale
-        model.scale.set(1, 1, 1);
+        model.scale.set(150, 150, 150);
 
         model.position.y = -11;
     
@@ -99,17 +99,17 @@
         let clips = fileAnimations.filter(val => val.name !== 'Idle');
         possibleAnims = clips.map(val => {
             let clip = THREE.AnimationClip.findByName(clips, val.name);
-            clip.tracks.splice(6, 3);
-            clip.tracks.splice(63, 3);
+            // clip.tracks.splice(6, 3);
+            // clip.tracks.splice(78, 3);
             clip = mixer.clipAction(clip);
             return clip;
            }
           );
-        let idleAnim = THREE.AnimationClip.findByName(fileAnimations, 'Idle');
+        let idleAnim = THREE.AnimationClip.findByName(fileAnimations, 'idle');
         console.log(idleAnim.tracks);
-        idleAnim.tracks.splice(6, 3);
-        idleAnim.tracks.splice(6, 3);
-        idleAnim.tracks.splice(63, 3);
+        idleAnim.tracks.splice(21, 3);
+        // idleAnim.tracks.splice(6, 3);
+        // idleAnim.tracks.splice(78, 3);
         idle = mixer.clipAction(idleAnim);
         cheer = mixer.clipAction(THREE.AnimationClip.findByName(fileAnimations, 'Cheer'))
         idle.play();
@@ -154,38 +154,45 @@
         var tag = document.getElementById('wrapper');
         tag.style.top = globalVariable.y2 + 'px';
         tag.style.left = globalVariable.x2 + 'px';
-        var mousecoords = getMousePos(globalVariable.x1,globalVariable.y1);
+        // var mousecoords = getMousePos(globalVariable.x1,globalVariable.y1);
 
-        if (neck && waist) {
-            moveJoint(mousecoords, neck, 50);
-            moveJoint(mousecoords, waist, 50);
-        }
-        if (!currentlyAnimating  && globalVariable.z2> 200) {
-          currentlyAnimating = true;
-          playOnClick();
+        // if (neck && waist) {
+        //     moveJoint(mousecoords, neck, 300);
+        //     moveJoint(mousecoords, waist, 300);
+        // }
+        // if (!currentlyAnimating  && globalVariable.z2> 200) {
+        //   currentlyAnimating = true;
+        //   playOnClick();
           // && globalVariable.z1> 200
-      }
+      // }
 
       }
       update();
 
 
-      // document.addEventListener('mousemove', function(e) {
-      //   var mousecoords = getMousePos(e);
+      document.addEventListener('mousemove', function(e) {
+        var mousecoords = getMousePos(e);
 
-      //   if (neck && waist) {
-      //       moveJoint(mousecoords, neck, 50);
-      //       moveJoint(mousecoords, waist, 50);
-      //   }
+        if (neck && waist) {
+            moveJoint(mousecoords, neck, 50);
+            moveJoint(mousecoords, waist, 50);
+        }
 
-      // });
+      });
       
-      function getMousePos(x1,y1) {
-        return { x: x1, y: y1 };
+      // function getMousePos(x1,y1) {
+      //   return { x: x1, y: y1 };
+      // }
+      function getMousePos(e) {
+        return { x: e.clientX, y: e.clientY };
       }
-
       function moveJoint(mouse, joint, degreeLimit) {
+        // console.log(globalVariable.x1, globalVariable.y1);
+        // let degrees = getMouseDegrees(globalVariable.x1, globalVariable.y1, degreeLimit);
+        // console.log(mouse.x, mouse.y);
+
         let degrees = getMouseDegrees(mouse.x, mouse.y, degreeLimit);
+
         joint.rotation.y = THREE.Math.degToRad(degrees.x);
         joint.rotation.x = THREE.Math.degToRad(degrees.y);
       }
