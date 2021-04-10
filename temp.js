@@ -171,6 +171,7 @@
         sphere.position.y = -2.5;
         sphere.position.x = -0.25;
         scene.add(sphere);
+        console.log("hello")
     }
 
     function update() {

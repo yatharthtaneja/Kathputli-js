@@ -81,22 +81,24 @@
             }
           
             // Reference the neck and waist bones
-            if (o.isBone && o.name === 'mixamorigLeftArm') { 
+          //   if (o.isBone && o.name === 'mixamorigLeftArm') { 
+          //       neck = o;
+          //   }
+          //   if (o.isBone && o.name === 'mixamorigRightArm') { 
+          //     // console.log("ess");
+          //       waist = o;
+          //   }
+
+          //   if (o.isBone && o.name === 'mixamorigLeftForeArm') { 
+          //     Lforearm = o;
+          // }
+          // if (o.isBone && o.name === 'mixamorigRightForeArm') { 
+          //   // console.log("ess");
+          //     Rforearm = o;
+          // }
+            if (o.isBone && o.name === 'mixamorigLeftShoulder') { 
                 neck = o;
             }
-            if (o.isBone && o.name === 'mixamorigRightArm') { 
-              // console.log("ess");
-                waist = o;
-            }
-
-            if (o.isBone && o.name === 'mixamorigLeftForeArm') { 
-              Lforearm = o;
-          }
-          if (o.isBone && o.name === 'mixamorigRightForeArm') { 
-            // console.log("ess");
-              Rforearm = o;
-          }
-
 
         });
 
@@ -122,10 +124,11 @@
         //   );
         let idleAnim = THREE.AnimationClip.findByName(fileAnimations, 'idle');
         console.log(idleAnim.tracks);
-        idleAnim.tracks.splice(24, 3);
-        idleAnim.tracks.splice(24, 3);
-        idleAnim.tracks.splice(78, 3);
-        idleAnim.tracks.splice(78, 3);
+        idleAnim.tracks.splice(21, 3);
+        // idleAnim.tracks.splice(24, 3);
+        // idleAnim.tracks.splice(24, 3);
+        // idleAnim.tracks.splice(78, 3);
+        // idleAnim.tracks.splice(78, 3);
         idle = mixer.clipAction(idleAnim);
         idle.play();
 
@@ -171,16 +174,21 @@
         tag.style.left = globalVariable.x2 + 'px';
         // var mousecoords = getMousePos(globalVariable.x1,globalVariable.y1);
           // console.log(globalVariable.l20x,globalVariable.l20y);
+
         if (neck && waist && Rforearm && Lforearm ) {
             // moveJoint(globalVariable.x2- globalVariable.l8x, globalVariable.y2 - globalVariable.l8y, waist, 50);
             // moveJoint(globalVariable.x2 - globalVariable.l20x,globalVariable.y2- globalVariable.l20y, neck, 50);
             // moveJoint(globalVariable.x2- globalVariable.l8x, globalVariable.y2 - globalVariable.l8y, Rforearm, 50);
             // moveJoint(globalVariable.x2 - globalVariable.l20x,globalVariable.y2- globalVariable.l20y, Lforearm, 50);
-            moveJoint2(globalVariable.x1, globalVariable.y1 , Rforearm);
-            moveJoint2(globalVariable.x1, globalVariable.y1 , Lforearm);
-            console.log(Rforearm.position.x , Lforearm.position.x);
+            // moveJoint2(globalVariable.x1, globalVariable.y1 , Rforearm);
+            // moveJoint2(globalVariable.x1, globalVariable.y1 , Lforearm);
+            // console.log(Rforearm.position.x , Lforearm.position.x);
             moveJoint2(globalVariable.x1, globalVariable.y1 , neck);
 
+
+        }
+        if(neck){
+          moveJoint2(globalVariable.x1, globalVariable.y1 , neck);
 
         }
         // if (!currentlyAnimating  && globalVariable.z2> 200) {
@@ -213,13 +221,25 @@
 
       function moveJoint2(x,y, joint) {
 
-        // let degrees = getMouseDegrees(x, y, degreeLimit);
 
-        // joint.rotation.y = THREE.Math.degToRad(degrees.y);
-        // joint.rotation.x = THREE.Math.degToRad(degrees.x);
-
-        joint.lookAt(x,y,100);
         // joint.lookAt(x,y,100);
+        // joint.lookAt(x,y,100);
+
+        // const v = new THREE.Vector3(0,1,1);
+        // console.log((globalVariable.y2 - globalVariable.l8y )/ 720 * 360 );
+        console.log(joint.rotation.x ,joint.rotation.z );
+        // joint.rotateY(THREE.Math.degToRad((globalVariable.y2 - globalVariable.l8y )/ 720 * 360 ));
+        joint.rotateY(THREE.Math.degToRad(Math.PI / 2) );
+        
+        // isko koi nahi chedhega
+        // joint.rotation.z = -1.7;
+        // joint.rotation.x = 1.7;
+        // joint.rotation.y = 0.3;
+
+                joint.rotation.z = -1.7;
+        joint.rotation.x = 1.8;
+        joint.rotation.y = 0.3;
+
         
       }
 
@@ -271,40 +291,6 @@
         return { x: dx, y: dy };
       }
 
-    //   document.addEventListener('mousemove', function(e) {
-
-    //     window.addEventListener('click', e => raycast(e));
-    //     window.addEventListener('touchend', e => raycast(e, true));
-
-    //     function raycast(e, touch = false) {
-    //     var mouse = {};
-    //     if (touch) {
-    //         mouse.x = 2 * (e.changedTouches[0].clientX / window.innerWidth) - 1;
-    //         mouse.y = 1 - 2 * (e.changedTouches[0].clientY / window.innerHeight);
-    //     } else {
-    //         mouse.x = 2 * (e.clientX / window.innerWidth) - 1;
-    //         mouse.y = 1 - 2 * (e.clientY / window.innerHeight);
-    //     }
-    //     // update the picking ray with the camera and mouse position
-    //     raycaster.setFromCamera(mouse, camera);
-
-    //     // calculate objects intersecting the picking ray
-    //     var intersects = raycaster.intersectObjects(scene.children, true);
-
-    //     if (intersects[0]) {
-    //         var object = intersects[0].object;
-    //         console.log(object.name)
-    //         if (object.name === '') {
-              
-    //         if (!currentlyAnimating) {
-    //             currentlyAnimating = true;
-    //             playOnClick();
-    //         }
-    //         }
-    //     }
-    //     }
-          
-    // })
 
     function playOnClick() {
         let anim = Math.floor(Math.random() * possibleAnims.length) + 0;
