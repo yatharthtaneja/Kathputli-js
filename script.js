@@ -96,9 +96,13 @@
           //   // console.log("ess");
           //     Rforearm = o;
           // }
+
             if (o.isBone && o.name === 'mixamorigLeftShoulder') { 
                 neck = o;
             }
+            if (o.isBone && o.name === 'mixamorigRightShoulder') { 
+              waist = o;
+          }
 
         });
 
@@ -113,22 +117,13 @@
 
         mixer = new THREE.AnimationMixer(model);
 
-        // let clips = fileAnimations.filter(val => val.name !== 'idle');
-        // possibleAnims = clips.map(val => {
-        //     let clip = THREE.AnimationClip.findByName(clips, val.name);
-        //     // clip.tracks.splice(6, 3);
-        //     // clip.tracks.splice(78, 3);
-        //     clip = mixer.clipAction(clip);
-        //     return clip;
-        //    }
-        //   );
         let idleAnim = THREE.AnimationClip.findByName(fileAnimations, 'idle');
         console.log(idleAnim.tracks);
         idleAnim.tracks.splice(21, 3);
         // idleAnim.tracks.splice(24, 3);
         // idleAnim.tracks.splice(24, 3);
         // idleAnim.tracks.splice(78, 3);
-        // idleAnim.tracks.splice(78, 3);
+        idleAnim.tracks.splice(78, 3);
         idle = mixer.clipAction(idleAnim);
         idle.play();
 
@@ -175,20 +170,24 @@
         // var mousecoords = getMousePos(globalVariable.x1,globalVariable.y1);
           // console.log(globalVariable.l20x,globalVariable.l20y);
 
-        if (neck && waist && Rforearm && Lforearm ) {
-            // moveJoint(globalVariable.x2- globalVariable.l8x, globalVariable.y2 - globalVariable.l8y, waist, 50);
-            // moveJoint(globalVariable.x2 - globalVariable.l20x,globalVariable.y2- globalVariable.l20y, neck, 50);
-            // moveJoint(globalVariable.x2- globalVariable.l8x, globalVariable.y2 - globalVariable.l8y, Rforearm, 50);
-            // moveJoint(globalVariable.x2 - globalVariable.l20x,globalVariable.y2- globalVariable.l20y, Lforearm, 50);
-            // moveJoint2(globalVariable.x1, globalVariable.y1 , Rforearm);
-            // moveJoint2(globalVariable.x1, globalVariable.y1 , Lforearm);
-            // console.log(Rforearm.position.x , Lforearm.position.x);
-            moveJoint2(globalVariable.x1, globalVariable.y1 , neck);
+        // if (neck && waist && Rforearm && Lforearm ) {
+        //     // moveJoint(globalVariable.x2- globalVariable.l8x, globalVariable.y2 - globalVariable.l8y, waist, 50);
+        //     // moveJoint(globalVariable.x2 - globalVariable.l20x,globalVariable.y2- globalVariable.l20y, neck, 50);
+        //     // moveJoint(globalVariable.x2- globalVariable.l8x, globalVariable.y2 - globalVariable.l8y, Rforearm, 50);
+        //     // moveJoint(globalVariable.x2 - globalVariable.l20x,globalVariable.y2- globalVariable.l20y, Lforearm, 50);
+        //     // moveJoint2(globalVariable.x1, globalVariable.y1 , Rforearm);
+        //     // moveJoint2(globalVariable.x1, globalVariable.y1 , Lforearm);
+        //     moveJoint2(globalVariable.x1, globalVariable.y1 , neck);
 
 
-        }
-        if(neck){
-          moveJoint2(globalVariable.x1, globalVariable.y1 , neck);
+        // }
+        console.log(waist)
+        if(neck && waist){
+          // moveJoint2(globalVariable.x1, globalVariable.y1 , neck);
+          checkJoint(globalVariable.y2- globalVariable.l16y, -1,neck);
+          checkJoint(globalVariable.y2- globalVariable.l8y , 1 ,waist);
+          console.log(neck.rotation.x);
+
 
         }
         // if (!currentlyAnimating  && globalVariable.z2> 200) {
@@ -201,8 +200,37 @@
       update();
 
 // deadpool
+var temp;
+var i = 0 , csize = 5 ;
 
-      
+var arr =new Array(csize) ;
+
+function smooth(arr){
+  var sum = 0;
+  for(var j = 0 ; j < csize ; j++){
+    sum+= arr[j];
+  }
+  return sum / csize ;
+}
+      function checkJoint(y, sign, joint){
+          // const old_min = -350 , old_max = -75 , new_max = 2100 , new_min = -1.5;
+          joint.rotation.x= ( (y - globalVariable.dist2*2) / (globalVariable.dist2*2 -  0) ) * (1.7 - (-1.5)) + (-1.5)
+
+        // temp =  ( (y - globalVariable.dist2*2) / (globalVariable.dist2*2 -  0) ) * (1.7 - (-1.5)) + (-1.5)
+        // arr[i++] = temp ;
+        // if (i== csize ){
+        //   i=0;
+        //   joint.rotation.x = smooth(arr);
+        //   arr =new Array(csize) ;
+        // }
+        
+        joint.rotation.z = sign * 0.9;
+        // joint.rotation.x = 1.7;
+        joint.rotation.y = -1 * sign * 0.3;
+
+      }
+
+
       function getMousePos(x1,y1) {
         return { x: x1, y: y1 };
       }
@@ -236,7 +264,7 @@
         // joint.rotation.x = 1.7;
         // joint.rotation.y = 0.3;
 
-                joint.rotation.z = -1.7;
+        joint.rotation.z = -1.7;
         joint.rotation.x = 1.8;
         joint.rotation.y = 0.3;
 

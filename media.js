@@ -55,8 +55,8 @@ else if(results.multiHandedness[0].index==1){ //for right
         
         globalVariable.l6x =  results.multiHandLandmarks[0][6].x*1280
         globalVariable.l6y =  results.multiHandLandmarks[0][6].y *720
-        globalVariable.l20x =  results.multiHandLandmarks[0][20].x*1280
-        globalVariable.l20y =  results.multiHandLandmarks[0][20].y *720
+        globalVariable.l16x =  results.multiHandLandmarks[0][16].x*1280
+        globalVariable.l16y =  results.multiHandLandmarks[0][16].y *720
         globalVariable.l9x =  results.multiHandLandmarks[0][9].x*1280
         globalVariable.l9y =  results.multiHandLandmarks[0][9].y *720
 
@@ -88,8 +88,8 @@ else if(results.multiHandLandmarks.length == 2){
             
             globalVariable.l6x =  results.multiHandLandmarks[0][6].x*1280
             globalVariable.l6y =  results.multiHandLandmarks[0][6].y *720
-            globalVariable.l20x =  results.multiHandLandmarks[0][20].x*1280
-            globalVariable.l20y =  results.multiHandLandmarks[0][20].y *720
+            globalVariable.l16x =  results.multiHandLandmarks[0][16].x*1280
+            globalVariable.l16y =  results.multiHandLandmarks[0][16].y *720
             globalVariable.l9x =  results.multiHandLandmarks[0][9].x*1280
             globalVariable.l9y =  results.multiHandLandmarks[0][9].y *720
     
@@ -112,8 +112,8 @@ else if(results.multiHandLandmarks.length == 2){
         
         globalVariable.l6x =  results.multiHandLandmarks[1][6].x*1280
         globalVariable.l6y =  results.multiHandLandmarks[1][6].y *720
-        globalVariable.l20x =  results.multiHandLandmarks[1][20].x*1280
-        globalVariable.l20y =  results.multiHandLandmarks[1][20].y *720
+        globalVariable.l16x =  results.multiHandLandmarks[1][16].x*1280
+        globalVariable.l16y =  results.multiHandLandmarks[1][16].y *720
         globalVariable.l17x =  results.multiHandLandmarks[1][17].x*1280
         globalVariable.l17y =  results.multiHandLandmarks[1][17].y *720
 
