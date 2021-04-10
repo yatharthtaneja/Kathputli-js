@@ -56,6 +56,8 @@
         camera.position.z = 30 
         camera.position.x = 0;
         camera.position.y = -3;
+
+
         var loader = new THREE.GLTFLoader();
 
         loader.load(
@@ -99,7 +101,7 @@
         });
 
           // Set the models initial scale
-        model.scale.set(100, 100, 100);
+        model.scale.set(120, 120, 120);
 
         model.position.y = -11;
     
@@ -168,12 +170,18 @@
         tag.style.top = (globalVariable.y2+100) + 'px';
         tag.style.left = globalVariable.x2 + 'px';
         // var mousecoords = getMousePos(globalVariable.x1,globalVariable.y1);
-          console.log(globalVariable.l20x,globalVariable.l20y);
+          // console.log(globalVariable.l20x,globalVariable.l20y);
         if (neck && waist && Rforearm && Lforearm ) {
-            moveJoint(globalVariable.x2- globalVariable.l8x, globalVariable.y2 - globalVariable.l8y, waist, 50);
-            moveJoint(globalVariable.x2 - globalVariable.l20x,globalVariable.y2- globalVariable.l20y, neck, 50);
-            moveJoint(globalVariable.x2- globalVariable.l8x, globalVariable.y2 - globalVariable.l8y, Rforearm, 50);
-            moveJoint(globalVariable.x2 - globalVariable.l20x,globalVariable.y2- globalVariable.l20y, Lforearm, 50);
+            // moveJoint(globalVariable.x2- globalVariable.l8x, globalVariable.y2 - globalVariable.l8y, waist, 50);
+            // moveJoint(globalVariable.x2 - globalVariable.l20x,globalVariable.y2- globalVariable.l20y, neck, 50);
+            // moveJoint(globalVariable.x2- globalVariable.l8x, globalVariable.y2 - globalVariable.l8y, Rforearm, 50);
+            // moveJoint(globalVariable.x2 - globalVariable.l20x,globalVariable.y2- globalVariable.l20y, Lforearm, 50);
+            moveJoint2(globalVariable.x1, globalVariable.y1 , Rforearm);
+            moveJoint2(globalVariable.x1, globalVariable.y1 , Lforearm);
+            console.log(Rforearm.position.x , Lforearm.position.x);
+            moveJoint2(globalVariable.x1, globalVariable.y1 , neck);
+
+
         }
         // if (!currentlyAnimating  && globalVariable.z2> 200) {
         //   currentlyAnimating = true;
@@ -201,6 +209,18 @@
 
         joint.rotation.y = THREE.Math.degToRad(degrees.y);
         joint.rotation.x = THREE.Math.degToRad(degrees.x);
+      }
+
+      function moveJoint2(x,y, joint) {
+
+        // let degrees = getMouseDegrees(x, y, degreeLimit);
+
+        // joint.rotation.y = THREE.Math.degToRad(degrees.y);
+        // joint.rotation.x = THREE.Math.degToRad(degrees.x);
+
+        joint.lookAt(x,y,100);
+        // joint.lookAt(x,y,100);
+        
       }
 
 
