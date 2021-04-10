@@ -20,6 +20,14 @@
   
 #c{
     position: absolute;
-    z-index: 1000;
+    z-index: 500;
     transform: translate(-50%, -50%) 
+}
+#wrapper{
+    position: absolute;
+    z-index: 1000;  
+}
+#c2{
+position: absolute;
+z-index: 1000;
 }

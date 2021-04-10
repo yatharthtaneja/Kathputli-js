@@ -37,6 +37,8 @@ if(results.multiHandedness[0].index==1){ //for left
 globalVariable.x1 = results.multiHandLandmarks[0][0].x * 1280;
 globalVariable.y1 = results.multiHandLandmarks[0][0].y *720;
 globalVariable.z1 = Math.abs(results.multiHandLandmarks[0][5].x - results.multiHandLandmarks[0][17].x) *1280;
+globalVariable.dist1 = Math.abs(results.multiHandLandmarks[0][8].x - results.multiHandLandmarks[0][4].x) *1280;
+
 }
 }
 else{
