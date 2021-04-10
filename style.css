@@ -26,6 +26,7 @@
 #wrapper{
     position: absolute;
     z-index: 1000;  
+    transform: translate(-50%, -50%) 
 }
 #c2{
 position: absolute;

@@ -31,19 +31,67 @@ for (let index = 0; index < results.multiHandLandmarks.length; index++) {
     }
   });
 }
-// do array if dono hands to multihands.length ==2 
-// console.log( results.multiHandLandmarks[0][9]);
-if(results.multiHandedness[0].index==1){ //for left
-globalVariable.x1 = results.multiHandLandmarks[0][0].x * 1280;
-globalVariable.y1 = results.multiHandLandmarks[0][0].y *720;
-globalVariable.z1 = Math.abs(results.multiHandLandmarks[0][5].x - results.multiHandLandmarks[0][17].x) *1280;
-globalVariable.dist1 = Math.abs(results.multiHandLandmarks[0][8].x - results.multiHandLandmarks[0][4].x) *1280;
+
+console.log(results.multiHandedness);
+if(results.multiHandLandmarks.length == 1){
+
+if(results.multiHandedness[0].index==0){ //for left
+        globalVariable.x1 = results.multiHandLandmarks[0][0].x * 1280;
+        globalVariable.y1 = results.multiHandLandmarks[0][0].y *720;
+        globalVariable.z1 = Math.abs(results.multiHandLandmarks[0][5].x - results.multiHandLandmarks[0][17].x) *1280;
+        globalVariable.dist1 = Math.abs(results.multiHandLandmarks[0][8].x - results.multiHandLandmarks[0][4].x) *1280;
+        globalVariable.x2 = -1000;
+        globalVariable.y2 = -1000; 
+}
+else if(results.multiHandedness[0].index==1){ //for right
+        globalVariable.x2 = results.multiHandLandmarks[0][0].x * 1280;
+        globalVariable.y2 = results.multiHandLandmarks[0][0].y *720;
+        globalVariable.z2 = Math.abs(results.multiHandLandmarks[0][5].x - results.multiHandLandmarks[0][17].x) *1280;
+        globalVariable.dist2 = Math.abs(results.multiHandLandmarks[0][8].x - results.multiHandLandmarks[0][4].x) *1280;
+        globalVariable.x1 = -1000;
+        globalVariable.y1 = -1000; 
 
 }
+
+
+}
+else if(results.multiHandLandmarks.length == 2){
+
+    if(results.multiHandedness[0].index==0){ //for left
+            globalVariable.x1 = results.multiHandLandmarks[0][0].x * 1280;
+            globalVariable.y1 = results.multiHandLandmarks[0][0].y *720;
+            globalVariable.z1 = Math.abs(results.multiHandLandmarks[0][5].x - results.multiHandLandmarks[0][17].x) *1280;
+            globalVariable.dist1 = Math.abs(results.multiHandLandmarks[0][8].x - results.multiHandLandmarks[0][4].x) *1280;
+    }
+    else if(results.multiHandedness[0].index==1){ //for right
+            globalVariable.x2 = results.multiHandLandmarks[0][0].x * 1280;
+            globalVariable.y2 = results.multiHandLandmarks[0][0].y *720;
+            globalVariable.z2 = Math.abs(results.multiHandLandmarks[0][5].x - results.multiHandLandmarks[0][17].x) *1280;
+            globalVariable.dist2 = Math.abs(results.multiHandLandmarks[0][8].x - results.multiHandLandmarks[0][4].x) *1280;
+    
+    }
+    
+    if(results.multiHandedness[1].index==0){ //for left
+        globalVariable.x1 = results.multiHandLandmarks[1][0].x * 1280;
+        globalVariable.y1 = results.multiHandLandmarks[1][0].y *720;
+        globalVariable.z1 = Math.abs(results.multiHandLandmarks[1][5].x - results.multiHandLandmarks[1][17].x) *1280;
+        globalVariable.dist1 = Math.abs(results.multiHandLandmarks[1][8].x - results.multiHandLandmarks[1][4].x) *1280;
+}
+    else if(results.multiHandedness[1].index==1){ //for right
+        globalVariable.x2 = results.multiHandLandmarks[1][0].x * 1280;
+        globalVariable.y2 = results.multiHandLandmarks[1][0].y *720;
+        globalVariable.z2 = Math.abs(results.multiHandLandmarks[1][5].x - results.multiHandLandmarks[1][17].x) *1280;
+        globalVariable.dist2 = Math.abs(results.multiHandLandmarks[1][8].x - results.multiHandLandmarks[1][4].x) *1280;
+
+}
+    
+    }
 }
 else{
     globalVariable.x1 = -1000;
     globalVariable.y1 = -1000; 
+    globalVariable.x2 = -1000;
+    globalVariable.y2 = -1000; 
 }
 canvasCtx.restore();
 }

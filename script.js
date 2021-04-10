@@ -151,13 +151,16 @@
         renderer.render(scene, camera);
         requestAnimationFrame(update);
 
+        var tag = document.getElementById('wrapper');
+        tag.style.top = globalVariable.y2 + 'px';
+        tag.style.left = globalVariable.x2 + 'px';
         var mousecoords = getMousePos(globalVariable.x1,globalVariable.y1);
 
         if (neck && waist) {
             moveJoint(mousecoords, neck, 50);
             moveJoint(mousecoords, waist, 50);
         }
-        if (!currentlyAnimating  && globalVariable.z1> 200) {
+        if (!currentlyAnimating  && globalVariable.z2> 200) {
           currentlyAnimating = true;
           playOnClick();
           // && globalVariable.z1> 200

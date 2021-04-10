@@ -72,9 +72,9 @@ const animate = function () {
   tag.style.top = globalVariable.y1 + 'px';
   tag.style.left = globalVariable.x1 + 'px';
 
-    // const old_value = -1* globalVariable.z1;
-    // const old_min = -350 , old_max = -75 , new_max = 2100 , new_min = 800;
-    camera.position.z = ( (-1* globalVariable.z1 - -350) / (-75-  -350) ) * (3000 - 400) + 400
+  // const old_value = -1* globalVariable.z1;
+  // const old_min = -350 , old_max = -75 , new_max = 2100 , new_min = 800;
+  camera.position.z = ( (-1* globalVariable.z1 - -350) / (-75-  -350) ) * (3000 - 400) + 400
   console.log("hello " + globalVariable.dist1);
   // console.log("z " +-1* globalVariable.z1);
   // camera.position.z = new_value;
