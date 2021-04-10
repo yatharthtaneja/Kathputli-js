@@ -2,13 +2,10 @@
     // Set our main variables
     let scene,  
       renderer,
-      container,
       camera,
       model,                              // Our character
       neck,                               // Reference to the neck bone in the skeleton
-      waist,  
-      Lforearm,
-      Rforearm,                             // Reference to the waist bone in the skeleton
+      waist,                               // Reference to the waist bone in the skeleton
       possibleAnims,                      // Animations found in our file
       mixer,                              // THREE.js animations mixer
       idle,   
@@ -27,24 +24,20 @@
     function init() {
     
         // const MODEL_PATH = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/1376484/stacy_lightweight.glb';
-        const MODEL_PATH ='img/remote.glb';
-        // const canvas = document.querySelector('#c2');
-        // const backgroundColor = 0xf1f1f1;
+        const MODEL_PATH ='./remote.glb';
+        const canvas = document.querySelector('#c');
+        const backgroundColor = 0xf1f1f1;
         
         // Init the scene
         scene = new THREE.Scene();
-        // scene.background = new THREE.Color(backgroundColor);
-        // scene.fog = new THREE.Fog(backgroundColor, 60, 100);
+        scene.background = new THREE.Color(backgroundColor);
+        scene.fog = new THREE.Fog(backgroundColor, 60, 100);
 
         //Init Renderer
-        renderer = new THREE.WebGLRenderer({ alpha : true});
+        renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
         renderer.shadowMap.enabled = true;
         renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.setSize(1066, 600);
-        renderer.setClearColor( 0x000000, 0 );
-        container = document.getElementById('wrapper').appendChild(renderer.domElement);
-
-        // document.body.appendChild(renderer.domElement);
+        document.body.appendChild(renderer.domElement);
 
         // Add a camera
         camera = new THREE.PerspectiveCamera(
@@ -56,6 +49,17 @@
         camera.position.z = 30 
         camera.position.x = 0;
         camera.position.y = -3;
+
+        // let stacy_txt = new THREE.TextureLoader().load('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1376484/stacy.jpg');
+
+        // stacy_txt.flipY = false; // we flip the texture so that its the right way up
+
+        // const stacy_mtl = new THREE.MeshPhongMaterial({
+        // map: stacy_txt,
+        // color: 0xffffff,
+        // skinning: true
+        // });
+
         var loader = new THREE.GLTFLoader();
 
         loader.load(
@@ -79,51 +83,43 @@
             }
           
             // Reference the neck and waist bones
-            if (o.isBone && o.name === 'mixamorigLeftArm') { 
+            if (o.isBone && o.name === 'mixamorigLeftShoulder') { 
                 neck = o;
             }
-            if (o.isBone && o.name === 'mixamorigRightArm') { 
-              // console.log("ess");
+            if (o.isBone && o.name === 'mixamorigRightShoulder') { 
                 waist = o;
             }
-
-            if (o.isBone && o.name === 'mixamorigLeftForeArm') { 
-              Lforearm = o;
-          }
-          if (o.isBone && o.name === 'mixamorigRightForeArm') { 
-            // console.log("ess");
-              Rforearm = o;
-          }
-
-
         });
 
+
+
           // Set the models initial scale
-        model.scale.set(100, 100, 100);
+        model.scale.set(150, 150, 150);
 
         model.position.y = -11;
     
         scene.add(model);
 
-        // loaderAnim.remove();
+        loaderAnim.remove();
 
         mixer = new THREE.AnimationMixer(model);
 
-        // let clips = fileAnimations.filter(val => val.name !== 'idle');
-        // possibleAnims = clips.map(val => {
-        //     let clip = THREE.AnimationClip.findByName(clips, val.name);
-        //     // clip.tracks.splice(6, 3);
-        //     // clip.tracks.splice(78, 3);
-        //     clip = mixer.clipAction(clip);
-        //     return clip;
-        //    }
-        //   );
+        let clips = fileAnimations.filter(val => val.name !== 'idle');
+        possibleAnims = clips.map(val => {
+            let clip = THREE.AnimationClip.findByName(clips, val.name);
+            // clip.tracks.splice(6, 3);
+            // clip.tracks.splice(63, 3);
+            clip = mixer.clipAction(clip);
+            return clip;
+           }
+          );
         let idleAnim = THREE.AnimationClip.findByName(fileAnimations, 'idle');
         console.log(idleAnim.tracks);
-        idleAnim.tracks.splice(24, 3);
-        idleAnim.tracks.splice(24, 3);
+        // idleAnim.tracks.splice(6, 3);
+        // idleAnim.tracks.splice(7, 3);
+        idleAnim.tracks.splice(21, 3);
         idleAnim.tracks.splice(78, 3);
-        idleAnim.tracks.splice(78, 3);
+
         idle = mixer.clipAction(idleAnim);
         idle.play();
 
@@ -154,6 +150,27 @@
         dirLight.shadow.camera.bottom = d * -1;
         // Add directional Light to scene
         scene.add(dirLight);
+
+        // Floor
+        let floorGeometry = new THREE.PlaneGeometry(5000, 5000, 1, 1);
+        let floorMaterial = new THREE.MeshPhongMaterial({
+        color: 0xeeeeee,   
+        shininess: 0,
+        });
+
+        let floor = new THREE.Mesh(floorGeometry, floorMaterial);
+        floor.rotation.x = -0.5 * Math.PI; // This is 90 degrees by the way
+        floor.receiveShadow = true;
+        floor.position.y = -11;
+        scene.add(floor);
+
+        let geometry = new THREE.SphereGeometry(8, 32, 32);
+        let material = new THREE.MeshBasicMaterial({ color: 0x9bffaf }); // 0xf2ce2e 
+        let sphere = new THREE.Mesh(geometry, material);
+        sphere.position.z = -15;
+        sphere.position.y = -2.5;
+        sphere.position.x = -0.25;
+        scene.add(sphere);
     }
 
     function update() {
@@ -161,48 +178,56 @@
         if (mixer) {
             mixer.update(clock.getDelta());
           }
+
+
+        if (resizeRendererToDisplaySize(renderer)) {
+            const canvas = renderer.domElement;
+            camera.aspect = canvas.clientWidth / canvas.clientHeight;
+            camera.updateProjectionMatrix();
+          }
+
         renderer.render(scene, camera);
         requestAnimationFrame(update);
-
-        var tag = document.getElementById('wrapper');
-        tag.style.top = (globalVariable.y2+100) + 'px';
-        tag.style.left = globalVariable.x2 + 'px';
-        // var mousecoords = getMousePos(globalVariable.x1,globalVariable.y1);
-          console.log(globalVariable.l20x,globalVariable.l20y);
-        if (neck && waist && Rforearm && Lforearm ) {
-            moveJoint(globalVariable.x2- globalVariable.l8x, globalVariable.y2 - globalVariable.l8y, waist, 50);
-            moveJoint(globalVariable.x2 - globalVariable.l20x,globalVariable.y2- globalVariable.l20y, neck, 50);
-            moveJoint(globalVariable.x2- globalVariable.l8x, globalVariable.y2 - globalVariable.l8y, Rforearm, 50);
-            moveJoint(globalVariable.x2 - globalVariable.l20x,globalVariable.y2- globalVariable.l20y, Lforearm, 50);
-        }
-        // if (!currentlyAnimating  && globalVariable.z2> 200) {
-        //   currentlyAnimating = true;
-        //   playOnClick();
-          // && globalVariable.z1> 200
-      // }
-
       }
       update();
 
-// deadpool
-
+      function resizeRendererToDisplaySize(renderer) {
+        const canvas = renderer.domElement;
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        let canvasPixelWidth = canvas.width / window.devicePixelRatio;
+        let canvasPixelHeight = canvas.height / window.devicePixelRatio;
       
-      function getMousePos(x1,y1) {
-        return { x: x1, y: y1 };
+        const needResize =
+          canvasPixelWidth !== width || canvasPixelHeight !== height;
+        if (needResize) {
+          renderer.setSize(width, height, false);
+        }
+        return needResize;
       }
+     
 
-      function getMousePoscoord(e) {
-        console.log(e.clientX, e.clientY );
-      }
+      document.addEventListener('mousemove', function(e) {
+        var mousecoords = getMousePos(e);
+
+        if (neck && waist) {
+            moveJoint(mousecoords, neck, 50);
+            moveJoint(mousecoords, waist, 50);
+        }
+        
+
+      });
       
-      function moveJoint(x,y, joint, degreeLimit) {
-
-        let degrees = getMouseDegrees(x, y, degreeLimit);
-
-        joint.rotation.y = THREE.Math.degToRad(degrees.y);
-        joint.rotation.x = THREE.Math.degToRad(degrees.x);
+      function getMousePos(e) {
+        return { x: e.clientX, y: e.clientY };
       }
 
+      function moveJoint(mouse, joint, degreeLimit) {
+        let degrees = getMouseDegrees(mouse.x, mouse.y, degreeLimit);
+        joint.rotation.y = THREE.Math.degToRad(degrees.x);
+        joint.rotation.x = THREE.Math.degToRad(degrees.y);
+
+      }
 
       function getMouseDegrees(x, y, degreeLimit) {
         let dx = 0,
@@ -212,11 +237,7 @@
             ydiff,
             yPercentage;
       
-        // let w = { x: window.innerWidth, y: window.innerHeight };
-        // let w = { x: 1280, y:720 };
-
-        let w = { x: globalVariable.dist2 +50, y: 2*globalVariable.dist2y +50 };
-
+        let w = { x: window.innerWidth, y: window.innerHeight };
       
         // Left (Rotates neck left between 0 and -degreeLimit)
         
@@ -251,40 +272,40 @@
         return { x: dx, y: dy };
       }
 
-    //   document.addEventListener('mousemove', function(e) {
+      document.addEventListener('mousemove', function(e) {
 
-    //     window.addEventListener('click', e => raycast(e));
-    //     window.addEventListener('touchend', e => raycast(e, true));
+        window.addEventListener('click', e => raycast(e));
+        window.addEventListener('touchend', e => raycast(e, true));
 
-    //     function raycast(e, touch = false) {
-    //     var mouse = {};
-    //     if (touch) {
-    //         mouse.x = 2 * (e.changedTouches[0].clientX / window.innerWidth) - 1;
-    //         mouse.y = 1 - 2 * (e.changedTouches[0].clientY / window.innerHeight);
-    //     } else {
-    //         mouse.x = 2 * (e.clientX / window.innerWidth) - 1;
-    //         mouse.y = 1 - 2 * (e.clientY / window.innerHeight);
-    //     }
-    //     // update the picking ray with the camera and mouse position
-    //     raycaster.setFromCamera(mouse, camera);
+        function raycast(e, touch = false) {
+        var mouse = {};
+        if (touch) {
+            mouse.x = 2 * (e.changedTouches[0].clientX / window.innerWidth) - 1;
+            mouse.y = 1 - 2 * (e.changedTouches[0].clientY / window.innerHeight);
+        } else {
+            mouse.x = 2 * (e.clientX / window.innerWidth) - 1;
+            mouse.y = 1 - 2 * (e.clientY / window.innerHeight);
+        }
+        // update the picking ray with the camera and mouse position
+        raycaster.setFromCamera(mouse, camera);
 
-    //     // calculate objects intersecting the picking ray
-    //     var intersects = raycaster.intersectObjects(scene.children, true);
+        // calculate objects intersecting the picking ray
+        var intersects = raycaster.intersectObjects(scene.children, true);
 
-    //     if (intersects[0]) {
-    //         var object = intersects[0].object;
-    //         console.log(object.name)
-    //         if (object.name === '') {
+        if (intersects[0]) {
+            var object = intersects[0].object;
+            console.log(object.name)
+            if (object.name === '') {
               
-    //         if (!currentlyAnimating) {
-    //             currentlyAnimating = true;
-    //             playOnClick();
-    //         }
-    //         }
-    //     }
-    //     }
+            if (!currentlyAnimating) {
+                currentlyAnimating = true;
+                playOnClick();
+            }
+            }
+        }
+        }
           
-    // })
+    })
 
     function playOnClick() {
         let anim = Math.floor(Math.random() * possibleAnims.length) + 0;
