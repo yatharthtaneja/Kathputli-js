@@ -45,4 +45,5 @@ var globalVariable={
     char1path: "img/Cup.glb",
     char2path: "img/Spoon.glb",
     char3path: "img/Bottle.glb",
+    change : false
  };

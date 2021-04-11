@@ -77,6 +77,8 @@ if (annyang) {
      var msg = new SpeechSynthesisUtterance();
     msg.text = "Hey!";
     window.speechSynthesis.speak(msg);
+    globalVariable.change = true;
+
   }
     var pause = function() {
       annyang.pause(); 
@@ -90,14 +92,13 @@ if (annyang) {
 
     var commands = {
       'go to *target': callbackf,
-      'hello00':  op3,
-      'one': dancespoon,
+      'hello':  op3,
+
       'two': anim2,
       'three': anim3,
       'four': anim4,
-      '1': dancespoon,
       '2': anim2,
-      'hello': anim3,
+      'hel': anim3,
       '4': anim4,
       "screamed" : cupscream,
       "drop" : cupdrop,

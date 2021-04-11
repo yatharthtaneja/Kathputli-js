@@ -33,6 +33,7 @@
       "bottle": "img/Bottle.glb",
       "remote": "img/remote.glb",
     }
+    // const MODEL_PATH , scale; 
 
     init(); 
 
@@ -42,6 +43,9 @@
         const MODEL_PATH =dict[params.char1];
         const scale = dict2[params.char1];
         globalVariable.char1 = params.char1;
+        globalVariable.char2 = params.char2;
+        globalVariable.char3 = params.char3;
+
         console.log(scale);
         // Init the scene
         scene = new THREE.Scene();
@@ -111,18 +115,11 @@
 
         // console.log(model.rotation.y)
         scene.add(model);
+        console.log("scene", scene);
 
         // loaderAnim.remove();
 
         mixer = new THREE.AnimationMixer(model);
-
-        // let idleAnim = THREE.AnimationClip.findByName(fileAnimations, 'idle');
-        // // console.log(idleAnim.tracks);
-        // idleAnim.tracks.splice(21, 3);
-        // idleAnim.tracks.splice(78, 3);
-        // idle = mixer.clipAction(idleAnim);
-        // idle.play();
-
 
         console.log(fileAnimations);
         anim1 = mixer.clipAction(fileAnimations[0]);
@@ -198,6 +195,12 @@
           anim2.play();
           globalVariable.anim2bool = false;
         }
+
+        if(globalVariable.change)
+        {
+          change_char();
+          globalVariable.change = false;
+        }
       }
       update();
 
@@ -250,3 +253,74 @@ function smooth(arr){
           currentlyAnimating = false;
         }, to._clip.duration * 1000 - ((tSpeed + fSpeed) * 1000));
       }
+function change_char(){
+  scene.remove(model);
+  var temp = globalVariable.char1 ;
+  globalVariable.char1 = globalVariable.char3 ;
+  globalVariable.char3 = temp;
+  const MODEL_PATH =dict[globalVariable.char1];
+  const scale = dict2[globalVariable.char1];
+
+  var loader = new THREE.GLTFLoader();
+
+  loader.load(
+  MODEL_PATH,
+  function(gltf) {
+  // A lot is going to happen here
+  model = gltf.scene;
+  let fileAnimations = gltf.animations;
+  // console.log(fileAnimations);
+
+  model.traverse(o => {
+      
+      if (o.isBone) {
+        // console.log(o.name);
+      }
+
+      if (o.isMesh) {
+        o.castShadow = true;
+        o.receiveShadow = true;
+        // o.material = stacy_mtl;
+      }
+
+
+      if (o.isBone && o.name === 'mixamorigLeftShoulder') { 
+          neck = o;
+      }
+      if (o.isBone && o.name === 'mixamorigRightShoulder') { 
+        waist = o;
+    }
+
+  });
+
+    // Set the models initial scale
+  // model.scale.set(130, 130, 130);
+  model.scale.set(scale,scale,scale);
+
+
+  model.position.y = -11;
+  model.rotation.y = 0.5
+
+  // console.log(model.rotation.y)
+  scene.add(model);
+  console.log("scene", scene);
+
+  // loaderAnim.remove();
+
+  mixer = new THREE.AnimationMixer(model);
+
+  console.log(fileAnimations);
+  anim1 = mixer.clipAction(fileAnimations[0]);
+  anim2 = mixer.clipAction(fileAnimations[1]);
+  console.log(anim1)
+
+  },
+  undefined, // We don't need this function
+  function(error) {
+      console.error(error);
+  }
+  
+  );
+
+
+}
