@@ -4,7 +4,10 @@ html, body{
   padding: 0;
 overflow: hidden;
 
-
+}
+@font-face {
+  font-family: samark;
+  src: url(img/SAMAN__.TTF);
 }
   .input_video {
     position: absolute;
@@ -103,14 +106,53 @@ opacity: 40%;
 } */
 
 /* button */
-.div1 {
+.two {
+  margin: 0;
+}
+
+.Heading{
   display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+
+  width: 100%;
+  max-width: 240px;
+  height: 54px;
+  padding: 5px;
+  /* font-size: 1.1rem; */
+  font-weight: 900;
+  color: #ff4655;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  position: relative;
+  margin: 0px 0;
+  font-family: samark;
+}
+.text1{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+margin: 0;
+color: #ece8e1;
+max-width: 150%;
+text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  position: relative;
+
+}
+.div1 {
+  /* display: flex; */
   height: 100vh;
   align-items: center;
   justify-content: center;
   flex-flow: column;
 }
 div a {
+  display: flex;
   width: 100%;
   max-width: 240px;
   height: 54px;
