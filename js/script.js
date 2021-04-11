@@ -19,7 +19,7 @@
       loaderAnim = document.getElementById('js-loader');
     
     // })();
-
+let offsetx = (window.innerWidth - 1280)/2
     var dict2 ={
       "cup": 3,
       "spoon": 7,
@@ -154,7 +154,7 @@
 
         var tag = document.getElementById('wrapper');
         tag.style.top = (globalVariable.y2+100) + 'px';
-        tag.style.left = globalVariable.x2 + 'px';
+        tag.style.left = globalVariable.x2 +offsetx  + 'px';
         // console.log(waist)
         if(neck && waist){
           // moveJoint2(globalVariable.x1, globalVariable.y1 , neck);

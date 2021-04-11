@@ -4,7 +4,7 @@ const demosSection = document.getElementById('demos');
 const enableWebcamButton1 = document.getElementById('webcamButton1');
 const enableWebcamButton2 = document.getElementById('webcamButton2');
 const enableWebcamButton3 = document.getElementById('webcamButton3');
-
+var offset = window.innerWidth/6 + 680;
 var dict ={
   "cup": "img/Cup.glb",
   "spoon": "img/spoon.glb",
@@ -61,7 +61,7 @@ var model = undefined;
 cocoSsd.load().then(function (loadedModel) {
   model = loadedModel;
   // Show demo section now model is ready to use.
-  demosSection.classList.remove('invisible');
+  // demosSection.classList.remove('invisible');
 });
 
 var children = [];
@@ -84,13 +84,13 @@ function predictWebcam() {
         p.innerText = predictions[n].class  + ' - with ' 
             + Math.round(parseFloat(predictions[n].score) * 100) 
             + '% confidence.';
-        p.style = 'margin-left: ' + predictions[n].bbox[0]*(680/480) + 'px; margin-top: '
+        p.style = 'margin-left: ' + predictions[n].bbox[0]*(680/480) +offset + 'px; margin-top: '
             + (predictions[n].bbox[1] - 10)*(680/480) + 'px; width: ' 
-            + (predictions[n].bbox[2] - 10)*(680/480) + 'px; top: 0; left: 0;';
+            + (predictions[n].bbox[2] - 10)*(680/480)+ 'px; top: 0; left: 0;';
 
         const highlighter = document.createElement('div');
         highlighter.setAttribute('class', 'highlighter');
-        highlighter.style = 'left: ' + predictions[n].bbox[0]*(680/480) + 'px; top: '
+        highlighter.style = 'left: ' + predictions[n].bbox[0]*(680/480)+offset+700 + 'px; top: '
             + predictions[n].bbox[1]*(680/480) + 'px; width: ' 
             + predictions[n].bbox[2]*(680/480) + 'px; height: '
             + predictions[n].bbox[3]*(680/480) + 'px;';

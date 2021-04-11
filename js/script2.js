@@ -9,7 +9,8 @@
       waist,  
       Lforearm,
       Rforearm,                             // Reference to the waist bone in the skeleton
-      possibleAnims,                      // Animations found in our file
+      possibleAnims,
+      offsetx,                      // Animations found in our file
       mixer,                              // THREE.js animations mixer
       anim1,   
       anim2,                            // Idle, the default state our character returns to
@@ -34,7 +35,7 @@
       "remote": "img/remote.glb",
     }
     // const MODEL_PATH , scale; 
-
+    offsetx =( window.innerWidth - 1280 )/2;
     init(); 
 
     function init() {
@@ -165,7 +166,7 @@
 
         var tag = document.getElementById('c');
         tag.style.top = (globalVariable.y1+100) + 'px';
-        tag.style.left = globalVariable.x1 + 'px';
+        tag.style.left = globalVariable.x1 + offsetx + 'px';
         // console.log(waist)
         if(neck && waist){
           // moveJoint2(globalVariable.x1, globalVariable.y1 , neck);
