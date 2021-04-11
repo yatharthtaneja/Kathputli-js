@@ -34,5 +34,6 @@ var globalVariable={
     l20x:0,
     l20y:0,
     r20x:0,
-    r20y:0
+    r20y:0,
+    anim1bool : false
  };

@@ -11,8 +11,8 @@
       Rforearm,                             // Reference to the waist bone in the skeleton
       possibleAnims,                      // Animations found in our file
       mixer,                              // THREE.js animations mixer
-      idle,   
-      cheer,                            // Idle, the default state our character returns to
+      anim1,   
+      anim2,                            // Idle, the default state our character returns to
       clock = new THREE.Clock(),          // Used for anims, which run to a clock instead of frame rate 
       currentlyAnimating = false,         // Used to check whether characters neck is being used in another anim
       raycaster = new THREE.Raycaster(),  // Used to detect the click on our character
@@ -26,7 +26,7 @@
 
     function init() {
     
-        const MODEL_PATH ='img/cup.glb';
+        const MODEL_PATH ='img/Spoon.glb';
         
         // Init the scene
         scene = new THREE.Scene();
@@ -67,7 +67,7 @@
         model.traverse(o => {
             
             if (o.isBone) {
-              console.log(o.name);
+              // console.log(o.name);
             }
 
             if (o.isMesh) {
@@ -75,23 +75,7 @@
               o.receiveShadow = true;
               // o.material = stacy_mtl;
             }
-          
-            // Reference the neck and waist bones
-          //   if (o.isBone && o.name === 'mixamorigLeftArm') { 
-          //       neck = o;
-          //   }
-          //   if (o.isBone && o.name === 'mixamorigRightArm') { 
-          //     // console.log("ess");
-          //       waist = o;
-          //   }
 
-          //   if (o.isBone && o.name === 'mixamorigLeftForeArm') { 
-          //     Lforearm = o;
-          // }
-          // if (o.isBone && o.name === 'mixamorigRightForeArm') { 
-          //   // console.log("ess");
-          //     Rforearm = o;
-          // }
 
             if (o.isBone && o.name === 'mixamorigLeftShoulder') { 
                 neck = o;
@@ -104,7 +88,7 @@
 
           // Set the models initial scale
         // model.scale.set(130, 130, 130);
-        model.scale.set(3, 3, 3);
+        model.scale.set(7,7,7);
 
 
         model.position.y = -11;
@@ -117,12 +101,18 @@
 
         mixer = new THREE.AnimationMixer(model);
 
-        let idleAnim = THREE.AnimationClip.findByName(fileAnimations, 'idle');
-        // console.log(idleAnim.tracks);
-        idleAnim.tracks.splice(21, 3);
-        idleAnim.tracks.splice(78, 3);
-        idle = mixer.clipAction(idleAnim);
-        idle.play();
+        // let idleAnim = THREE.AnimationClip.findByName(fileAnimations, 'idle');
+        // // console.log(idleAnim.tracks);
+        // idleAnim.tracks.splice(21, 3);
+        // idleAnim.tracks.splice(78, 3);
+        // idle = mixer.clipAction(idleAnim);
+        // idle.play();
+
+
+        console.log(fileAnimations);
+        anim1 = mixer.clipAction(fileAnimations[0]);
+        anim2 = mixer.clipAction(fileAnimations[1]);
+        console.log(anim1)
 
         },
         undefined, // We don't need this function
@@ -173,16 +163,24 @@
 
 
         }
-        if(globalVariable.r12y >= globalVariable.r9y && globalVariable.r20y >= globalVariable.r9y ){
-            // console.log(model)
+        if(globalVariable.r12y >= globalVariable.r9y && globalVariable.r20y >= globalVariable.r9y && globalVariable.r9y>=0){
+            console.log(true)
             // model.rotation.y += 0.005;
-            model.rotation.y += 0.01
+            
+            model.rotation.y += 0.05
         }
-        // if (!currentlyAnimating  && globalVariable.z2> 200) {
-        //   currentlyAnimating = true;
-        //   playOnClick();
-          // && globalVariable.z1> 200
-      // }
+        if(globalVariable.anim1bool)
+        {
+          anim1.setLoop(THREE.LoopOnce);
+          anim1.reset();
+          anim1.play();
+          globalVariable.anim1bool = false;
+        }
+        if ( globalVariable.z1> 200) {
+
+          console.log(globalVariable.z1);
+          globalVariable.anim1bool = true;
+        }
 
       }
       update();
@@ -259,7 +257,7 @@ function smooth(arr){
       }
 
     function playOnClick() {
-        let anim = Math.floor(Math.random() * possibleAnims.length) + 0;
+        // let anim = Math.floor(Math.random() * possibleAnims.length) + 0;
         playModifierAnimation(idle, 0.25, cheer, 0.25);
       }
 

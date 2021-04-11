@@ -67,7 +67,7 @@
         model.traverse(o => {
             
             if (o.isBone) {
-              console.log(o.name);
+              // console.log(o.name);
             }
 
             if (o.isMesh) {
@@ -170,10 +170,10 @@
 
         }
 
-        if(globalVariable.l12y >= globalVariable.l9y && globalVariable.l20y >= globalVariable.l9y ){
+        if(globalVariable.l12y >= globalVariable.l9y && globalVariable.l20y >= globalVariable.l9y && globalVariable.l12y>0 ){
           // console.log(model)
           // model.rotation.y += 0.005;
-          model.rotation.y += 0.01
+          model.rotation.y += 0.02
       }
         // if (!currentlyAnimating  && globalVariable.z2> 200) {
         //   currentlyAnimating = true;
