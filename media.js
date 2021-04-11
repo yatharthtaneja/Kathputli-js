@@ -40,6 +40,24 @@ if(results.multiHandedness[0].index==0){ //for left
         globalVariable.y1 = results.multiHandLandmarks[0][0].y *720;
         globalVariable.z1 = Math.abs(results.multiHandLandmarks[0][5].x - results.multiHandLandmarks[0][17].x) *1280;
         globalVariable.dist1 = Math.abs(results.multiHandLandmarks[0][8].x - results.multiHandLandmarks[0][4].x) *1280;
+
+        globalVariable.r8x =  results.multiHandLandmarks[0][8].x *1280
+        globalVariable.r8y =  results.multiHandLandmarks[0][8].y *720
+        globalVariable.r6x =  results.multiHandLandmarks[0][6].x*1280
+        globalVariable.r6y =  results.multiHandLandmarks[0][6].y *720
+        globalVariable.r16x =  results.multiHandLandmarks[0][16].x*1280
+        globalVariable.r16y =  results.multiHandLandmarks[0][16].y *720
+        globalVariable.r9x =  results.multiHandLandmarks[0][9].x*1280
+        globalVariable.r9y =  results.multiHandLandmarks[0][9].y *720
+
+        globalVariable.r12x =  results.multiHandLandmarks[0][12].x*1280
+        globalVariable.r12y =  results.multiHandLandmarks[0][12].y *720
+        globalVariable.r20x =  results.multiHandLandmarks[0][20].x*1280
+        globalVariable.r20y =  results.multiHandLandmarks[0][20].y *720
+
+        globalVariable.dist1y = globalVariable.y1 - globalVariable.r9y 
+        globalVariable.rotate1 = results.multiHandLandmarks[0][8].z
+        // console.log(globalVariable.rotate1)
         globalVariable.x2 = -1000;
         globalVariable.y2 = -1000; 
 }
@@ -60,6 +78,11 @@ else if(results.multiHandedness[0].index==1){ //for right
         globalVariable.l9x =  results.multiHandLandmarks[0][9].x*1280
         globalVariable.l9y =  results.multiHandLandmarks[0][9].y *720
 
+        globalVariable.l12x =  results.multiHandLandmarks[0][12].x*1280
+        globalVariable.l12y =  results.multiHandLandmarks[0][12].y *720
+        globalVariable.l20x =  results.multiHandLandmarks[0][20].x*1280
+        globalVariable.l20y =  results.multiHandLandmarks[0][20].y *720
+
         globalVariable.x1 = -1000;
         globalVariable.y1 = -1000; 
 
@@ -76,6 +99,23 @@ else if(results.multiHandLandmarks.length == 2){
             globalVariable.y1 = results.multiHandLandmarks[0][0].y *720;
             globalVariable.z1 = Math.abs(results.multiHandLandmarks[0][5].x - results.multiHandLandmarks[0][17].x) *1280;
             globalVariable.dist1 = Math.abs(results.multiHandLandmarks[0][8].x - results.multiHandLandmarks[0][4].x) *1280;
+
+            globalVariable.r8x =  results.multiHandLandmarks[0][8].x *1280
+            globalVariable.r8y =  results.multiHandLandmarks[0][8].y *720
+            globalVariable.r6x =  results.multiHandLandmarks[0][6].x*1280
+            globalVariable.r6y =  results.multiHandLandmarks[0][6].y *720
+            globalVariable.r16x =  results.multiHandLandmarks[0][16].x*1280
+            globalVariable.r16y =  results.multiHandLandmarks[0][16].y *720
+            globalVariable.r9x =  results.multiHandLandmarks[0][9].x*1280
+            globalVariable.r9y =  results.multiHandLandmarks[0][9].y *720
+
+            globalVariable.r12x =  results.multiHandLandmarks[0][12].x*1280
+            globalVariable.r12y =  results.multiHandLandmarks[0][12].y *720
+            globalVariable.r20x =  results.multiHandLandmarks[0][20].x*1280
+            globalVariable.r20y =  results.multiHandLandmarks[0][20].y *720
+
+            globalVariable.dist1y = globalVariable.y1 - globalVariable.r9y 
+
     }
     else if(results.multiHandedness[0].index==1){ //for right
             globalVariable.x2 = results.multiHandLandmarks[0][0].x * 1280;
@@ -85,13 +125,19 @@ else if(results.multiHandLandmarks.length == 2){
 
             globalVariable.l8x =  results.multiHandLandmarks[0][8].x *1280
             globalVariable.l8y =  results.multiHandLandmarks[0][8].y *720
-            
             globalVariable.l6x =  results.multiHandLandmarks[0][6].x*1280
             globalVariable.l6y =  results.multiHandLandmarks[0][6].y *720
             globalVariable.l16x =  results.multiHandLandmarks[0][16].x*1280
             globalVariable.l16y =  results.multiHandLandmarks[0][16].y *720
             globalVariable.l9x =  results.multiHandLandmarks[0][9].x*1280
             globalVariable.l9y =  results.multiHandLandmarks[0][9].y *720
+
+            globalVariable.dist2y = globalVariable.y2 - globalVariable.l9y 
+
+            globalVariable.l12x =  results.multiHandLandmarks[0][12].x*1280
+            globalVariable.l12y =  results.multiHandLandmarks[0][12].y *720
+            globalVariable.l20x =  results.multiHandLandmarks[0][20].x*1280
+            globalVariable.l20y =  results.multiHandLandmarks[0][20].y *720
     
     }
     
@@ -100,6 +146,20 @@ else if(results.multiHandLandmarks.length == 2){
         globalVariable.y1 = results.multiHandLandmarks[1][0].y *720;
         globalVariable.z1 = Math.abs(results.multiHandLandmarks[1][5].x - results.multiHandLandmarks[1][17].x) *1280;
         globalVariable.dist1 = Math.abs(results.multiHandLandmarks[1][8].x - results.multiHandLandmarks[1][4].x) *1280;
+        globalVariable.r8x =  results.multiHandLandmarks[1][8].x *1280
+        globalVariable.r8y =  results.multiHandLandmarks[1][8].y *720
+        globalVariable.r6x =  results.multiHandLandmarks[1][6].x*1280
+        globalVariable.r6y =  results.multiHandLandmarks[1][6].y *720
+        globalVariable.r16x =  results.multiHandLandmarks[1][16].x*1280
+        globalVariable.r16y =  results.multiHandLandmarks[1][16].y *720
+        globalVariable.r17x =  results.multiHandLandmarks[1][17].x*1280
+        globalVariable.r17y =  results.multiHandLandmarks[1][17].y *720
+        globalVariable.dist1y = globalVariable.y1 - globalVariable.r9y 
+
+        globalVariable.r12x =  results.multiHandLandmarks[1][12].x*1280
+        globalVariable.r12y =  results.multiHandLandmarks[1][12].y *720
+        globalVariable.r20x =  results.multiHandLandmarks[1][20].x*1280
+        globalVariable.r20y =  results.multiHandLandmarks[1][20].y *720
 }
     else if(results.multiHandedness[1].index==1){ //for right
         globalVariable.x2 = results.multiHandLandmarks[1][0].x * 1280;
@@ -109,14 +169,18 @@ else if(results.multiHandLandmarks.length == 2){
 
         globalVariable.l8x =  results.multiHandLandmarks[1][8].x *1280
         globalVariable.l8y =  results.multiHandLandmarks[1][8].y *720
-        
         globalVariable.l6x =  results.multiHandLandmarks[1][6].x*1280
         globalVariable.l6y =  results.multiHandLandmarks[1][6].y *720
         globalVariable.l16x =  results.multiHandLandmarks[1][16].x*1280
         globalVariable.l16y =  results.multiHandLandmarks[1][16].y *720
         globalVariable.l17x =  results.multiHandLandmarks[1][17].x*1280
         globalVariable.l17y =  results.multiHandLandmarks[1][17].y *720
+        globalVariable.dist2y = globalVariable.y2 - globalVariable.l9y 
 
+        globalVariable.l12x =  results.multiHandLandmarks[1][12].x*1280
+        globalVariable.l12y =  results.multiHandLandmarks[1][12].y *720
+        globalVariable.l20x =  results.multiHandLandmarks[1][20].x*1280
+        globalVariable.l20y =  results.multiHandLandmarks[1][20].y *720
 }
     
     }

@@ -38,7 +38,7 @@
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(1066, 600);
         renderer.setClearColor( 0x000000, 0 );
-        container = document.getElementById('wrapper').appendChild(renderer.domElement);
+        container = document.getElementById('c').appendChild(renderer.domElement);
 
         // document.body.appendChild(renderer.domElement);
 
@@ -103,10 +103,12 @@
         });
 
           // Set the models initial scale
-        model.scale.set(120, 120, 120);
+        model.scale.set(130, 130, 130);
 
         model.position.y = -11;
-    
+        model.rotation.y = 0.5
+
+        // console.log(model.rotation.y)
         scene.add(model);
 
         // loaderAnim.remove();
@@ -157,17 +159,22 @@
         renderer.render(scene, camera);
         requestAnimationFrame(update);
 
-        var tag = document.getElementById('wrapper');
-        tag.style.top = (globalVariable.y2+100) + 'px';
-        tag.style.left = globalVariable.x2 + 'px';
+        var tag = document.getElementById('c');
+        tag.style.top = (globalVariable.y1+100) + 'px';
+        tag.style.left = globalVariable.x1 + 'px';
         // console.log(waist)
         if(neck && waist){
           // moveJoint2(globalVariable.x1, globalVariable.y1 , neck);
-          checkJoint(globalVariable.y2- globalVariable.l16y, -1,neck);
-          checkJoint(globalVariable.y2- globalVariable.l8y , 1 ,waist);
+          checkJoint(globalVariable.y1- globalVariable.r16y, 1,waist);
+          checkJoint(globalVariable.y1- globalVariable.r8y , -1 ,neck);
           // console.log(neck.rotation.x);
 
 
+        }
+        if(globalVariable.r12y >= globalVariable.r9y && globalVariable.r20y >= globalVariable.r9y ){
+            console.log(model)
+            // model.rotation.y += 0.005;
+            model.rotation.y += 0.03
         }
         // if (!currentlyAnimating  && globalVariable.z2> 200) {
         //   currentlyAnimating = true;
@@ -195,8 +202,8 @@ function smooth(arr){
           // const old_min = -350 , old_max = -75 , new_max = 2100 , new_min = -1.5;
           // joint.rotation.x=( (y - globalVariable.dist2*2) / (globalVariable.dist2*2 -  0) ) * (1.7 - (-1.5)) + (-1.5)
 
-        temp =  ( (y - globalVariable.dist2*2) / (globalVariable.dist2*2 -  0) ) * (1.7 - (-1.5)) + (-1.5)
-        // temp =  ( (y -globalVariable.dist2y*2) / (globalVariable.dist2y*2 -  0) ) * (1.7 - (-1.7)) + (-1.7)
+        temp =  ( (y - globalVariable.dist1*2) / (globalVariable.dist1*2 -  0) ) * (1.7 - (-1.5)) + (-1.5)
+        // temp =  ( (y -globalVariable.dist1y*2) / (globalVariable.dist1y*2 -  0) ) * (1.7 - (-1.7)) + (-1.7)
         if (temp < -1.7)
           temp = -1.7;
         if (temp >1.7)
@@ -204,15 +211,6 @@ function smooth(arr){
         // else if (temp < -1.5)
 
         joint.rotation.x = -1* temp.toFixed(4);
-        // console.log(joint.name , globalVariable.dist2y*2 )
-
-        // arr[i++] = temp ;
-        // if (i== csize ){
-        //   i=0;
-        //   joint.rotation.x = smooth(arr);
-        //   arr =new Array(csize) ;
-        // }
-        // console.log( "x: ", joint.rotation.x)
         joint.rotation.z = sign * 0.9;
         joint.rotation.y = -1 * sign * 0.3;
 
@@ -243,7 +241,7 @@ function smooth(arr){
 
         // const v = new THREE.Vector3(0,1,1);
         // console.log((globalVariable.y2 - globalVariable.l8y )/ 720 * 360 );
-        // console.log(joint.rotation.x ,joint.rotation.z );
+        console.log(joint.rotation.x ,joint.rotation.z );
         // joint.rotateY(THREE.Math.degToRad((globalVariable.y2 - globalVariable.l8y )/ 720 * 360 ));
         joint.rotateY(THREE.Math.degToRad(Math.PI / 2) );
         

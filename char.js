@@ -3,7 +3,15 @@ var globalVariable={
     y1:-1000,
     z1:-1000,
     dist1:10000,
-
+    dist1y:10000,
+    r8x:0,
+    r6x:0,
+    r16x:0,
+    r9x:0,
+    r8y:0,
+    r6y:0,
+    r16y:0,
+    r9y:0,
     x2: -1000,
     y2:-1000,
     z2:-1000,
@@ -16,5 +24,15 @@ var globalVariable={
     l16y:0,
     l9y:0,
     dist2:10000,
-    dist2y:1000
+    dist2y:1000,
+    rotate1:0,
+    rotate2:0,
+    l12x:0,
+    l12y:0,
+    r12x:0,
+    r12y:0,
+    l20x:0,
+    l20y:0,
+    r20x:0,
+    r20y:0
  };
