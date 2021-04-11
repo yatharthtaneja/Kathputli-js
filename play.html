@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="style.css"> 
+  <script src="js/char.js"></script>
+
+  <script> 
+    // console.log(parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length));
+// console.log()
+var regex = /[?&]([^=#]+)=([^&#]*)/g,
+    url = window.location.href,
+    params = {},
+    match;
+while(match = regex.exec(url)) {
+    params[match[1]] = match[2];
+}
+console.log(params)
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+  <script src="js/annyang.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container">
+    <video class="input_video"></video>
+    <canvas class="output_canvas" width="1280px" height="720px"></canvas>
+    <!-- <canvas id="c"  width="1280px" height="720px"></canvas> -->
+  </div>
+  <div id ="c">
+</div>
+<div id ="wrapper">
+</div>
+
+<!-- The main Three.js file -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/108/three.min.js'></script>
+
+<!-- This brings in the ability to load custom 3D objects in the .gltf file format. Blender allows the ability to export to this format out the box -->
+<script src='https://cdn.jsdelivr.net/gh/mrdoob/Three.js@r92/examples/js/loaders/GLTFLoader.js'></script>
+
+<script src = "js/three.min.js"></script>
+<script src="js/GLTFLoader.js"></script>
+<script src="js/OrbitControls.js"></script>
+
+
+<script type="module" src="js/media.js"> </script>
+<script src="js/speech.js" type="module"></script>
+<script src="js/script.js" type="module"></script>
+<script src="js/script2.js" type="module"></script>
+
+
+    
+</body>
+</html>

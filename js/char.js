@@ -35,5 +35,14 @@ var globalVariable={
     l20y:0,
     r20x:0,
     r20y:0,
-    anim1bool : false
+    anim1bool : false,
+    anim2bool : false,
+    lanim1bool : false,
+    lanim2bool : false,
+    char1: "cup",
+    char2: "spoon",
+    char3: "bottle",
+    char1path: "img/Cup.glb",
+    char2path: "img/Spoon.glb",
+    char3path: "img/Bottle.glb",
  };

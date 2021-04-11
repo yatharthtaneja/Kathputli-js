@@ -11,8 +11,8 @@
       Rforearm,                             // Reference to the waist bone in the skeleton
       possibleAnims,                      // Animations found in our file
       mixer,                              // THREE.js animations mixer
-      idle,   
-      cheer,                            // Idle, the default state our character returns to
+      anim1,   
+      anim2,                            // Idle, the default state our character returns to
       clock = new THREE.Clock(),          // Used for anims, which run to a clock instead of frame rate 
       currentlyAnimating = false,         // Used to check whether characters neck is being used in another anim
       raycaster = new THREE.Raycaster(),  // Used to detect the click on our character
@@ -20,14 +20,28 @@
     
     // })();
 
-    
+    var dict2 ={
+      "cup": 3,
+      "spoon": 7,
+      "bottle": 50,
+      "remote": 120,
+    }
+
+    var dict ={
+      "cup": "img/Cup.glb",
+      "spoon": "img/spoon.glb",
+      "bottle": "img/Bottle.glb",
+      "remote": "img/remote.glb",
+    }
 
     init(); 
 
     function init() {
     
-        const MODEL_PATH ='img/remote.glb';
-        
+        // const MODEL_PATH ='img/remote.glb';
+        const MODEL_PATH =dict[params.char2];
+        const scale = dict2[params.char2];
+        globalVariable.char2 = params.char2;
         // Init the scene
         scene = new THREE.Scene();
 
@@ -76,22 +90,6 @@
               // o.material = stacy_mtl;
             }
           
-            // Reference the neck and waist bones
-          //   if (o.isBone && o.name === 'mixamorigLeftArm') { 
-          //       neck = o;
-          //   }
-          //   if (o.isBone && o.name === 'mixamorigRightArm') { 
-          //     // console.log("ess");
-          //       waist = o;
-          //   }
-
-          //   if (o.isBone && o.name === 'mixamorigLeftForeArm') { 
-          //     Lforearm = o;
-          // }
-          // if (o.isBone && o.name === 'mixamorigRightForeArm') { 
-          //   // console.log("ess");
-          //     Rforearm = o;
-          // }
 
             if (o.isBone && o.name === 'mixamorigLeftShoulder') { 
                 neck = o;
@@ -103,7 +101,7 @@
         });
 
           // Set the models initial scale
-        model.scale.set(120, 120, 120);
+        model.scale.set(scale, scale, scale);
 
         model.position.y = -11;
     
@@ -113,12 +111,9 @@
 
         mixer = new THREE.AnimationMixer(model);
 
-        let idleAnim = THREE.AnimationClip.findByName(fileAnimations, 'idle');
-        // console.log(idleAnim.tracks);
-        idleAnim.tracks.splice(21, 3);
-        idleAnim.tracks.splice(78, 3);
-        idle = mixer.clipAction(idleAnim);
-        idle.play();
+        anim1 = mixer.clipAction(fileAnimations[0]);
+        anim2 = mixer.clipAction(fileAnimations[1]);
+        console.log("anim1",fileAnimations);
 
         },
         undefined, // We don't need this function
@@ -175,12 +170,21 @@
           // model.rotation.y += 0.005;
           model.rotation.y += 0.02
       }
-        // if (!currentlyAnimating  && globalVariable.z2> 200) {
-        //   currentlyAnimating = true;
-        //   playOnClick();
-          // && globalVariable.z1> 200
-      // }
 
+      if(globalVariable.lanim1bool)
+      {
+        anim1.setLoop(THREE.LoopOnce);
+        anim1.reset();
+        anim1.play();
+        globalVariable.lanim1bool = false;
+      }
+      if(globalVariable.lanim2bool)
+      {
+        anim2.setLoop(THREE.LoopOnce);
+        anim2.reset();
+        anim2.play();
+        globalVariable.lanim2bool = false;
+      }
       }
       update();
 

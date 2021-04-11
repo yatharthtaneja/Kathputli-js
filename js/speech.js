@@ -13,9 +13,64 @@ if (annyang) {
             }
           }
     
-    var dancespoon = function() {
+
+        
+    var cupscream = function() {
+      if(globalVariable.char1== 'cup')
+            globalVariable.anim1bool = true;
+    else if (globalVariable.char2== 'cup')
+        globalVariable.lanim1bool = true;
+
+    }
+    var cupdrop = function() {
+        if(globalVariable.char1== 'cup')
+              globalVariable.anim2bool = true;
+      else if (globalVariable.char2== 'cup')
+          globalVariable.lanim2bool = true;
+  
+      }
+
+      var spoondance = function() {
+        if(globalVariable.char1== 'spoon')
+              globalVariable.anim1bool = true;
+      else if (globalVariable.char2== 'spoon')
+          globalVariable.lanim1bool = true;
+  
+      }
+      var talkingspoon = function() {
+          if(globalVariable.char1== 'spoon')
+                globalVariable.anim2bool = true;
+        else if (globalVariable.char2== 'spoon')
+            globalVariable.lanim2bool = true;
+    
+        }
+  
+        var bottlecrying = function() {
+            if(globalVariable.char1== 'bottle')
+                  globalVariable.anim1bool = true;
+          else if (globalVariable.char2== 'bottle')
+              globalVariable.lanim1bool = true;
       
-        globalVariable.anim1bool = true;
+          }
+          var bottlemakefun = function() {
+              if(globalVariable.char1== 'bottle')
+                    globalVariable.anim2bool = true;
+            else if (globalVariable.char2== 'bottle')
+                globalVariable.lanim2bool = true;
+        
+            }
+
+    var anim2 = function() {
+      
+        globalVariable.anim2bool = true;
+    }
+    var anim3 = function() {
+      
+        globalVariable.lanim1bool = true;
+    }
+    var anim4 = function() {
+      
+        globalVariable.lanim2bool = true;
     }
 
    var op3 = function() {
@@ -35,12 +90,24 @@ if (annyang) {
 
     var commands = {
       'go to *target': callbackf,
-      'hello':  op3,
-      'dance': dancespoon,
-      'danse': dancespoon,
-      'dance dance': dancespoon,
-      'danse danse': dancespoon
-
+      'hello00':  op3,
+      'one': dancespoon,
+      'two': anim2,
+      'three': anim3,
+      'four': anim4,
+      '1': dancespoon,
+      '2': anim2,
+      'hello': anim3,
+      '4': anim4,
+      "screamed" : cupscream,
+      "drop" : cupdrop,
+      "scream" : cupscream,
+      "screen" : cupscream,
+      "backbend" : spoondance,
+      "talk": talkingspoon,
+      "crying": bottlecrying,
+      "make fun": bottlemakefun,
+      "fun": bottlemakefun
 
 
     };

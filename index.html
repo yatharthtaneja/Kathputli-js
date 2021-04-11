@@ -1,45 +1,35 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="style.css"> 
-  <script src="js/char.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
-  <script src="js/annyang.min.js"></script>
-
-</head>
-
-<body>
-  <div class="container">
-    <video class="input_video"></video>
-    <canvas class="output_canvas" width="1280px" height="720px"></canvas>
-    <!-- <canvas id="c"  width="1280px" height="720px"></canvas> -->
-  </div>
-  <div id ="c">
-</div>
-<div id ="wrapper">
-</div>
-
-<!-- The main Three.js file -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/108/three.min.js'></script>
-
-<!-- This brings in the ability to load custom 3D objects in the .gltf file format. Blender allows the ability to export to this format out the box -->
-<script src='https://cdn.jsdelivr.net/gh/mrdoob/Three.js@r92/examples/js/loaders/GLTFLoader.js'></script>
-
-<script src = "js/three.min.js"></script>
-<script src="js/GLTFLoader.js"></script>
-<script src="js/OrbitControls.js"></script>
-
-
-<script type="module" src="js/media.js"> </script>
-<script src="js/speech.js" type="module"></script>
-<script src="js/script.js" type="module"></script>
-<script src="js/script2.js" type="module"></script>
-
-
+<html lang="en">
+  <head>
+    <title>Multiple object detection using pre trained model in TensorFlow.js</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Import the webpage's stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <script src="js/char.js"></script>
+  </head>  
+  <body>
+    <p>Wait for the model to load before clicking the button to enable the webcam - at which point it will become visible to use.</p>
     
-</body>
+    <section id="demos" class="invisible">
+      <button id="webcamButton1">Scan Character One</button>
+      <button id="webcamButton2">Scan Character Two</button>
+      <button id="webcamButton3">Scan Character Three</button>
+      <!-- <a href="play.html?x=5&a=7&p=0&str1=cup" >Play</a> -->
+      <!-- <a href="play.html?x=5&a=7&p=0&str1=cup" >Play</a> -->
+      <a href="play.html" onclick="location.href=this.href+'?char1='+ globalVariable.char1 + '&char2='+ globalVariable.char2 + '&char3='+ globalVariable.char3 ;return false;">Link</a>
+      <div id="liveView" class="camView"></div>
+        <video id="webcam" autoplay width=auto height="680px"></video>
+      </div>
+    </section>
+
+    <!-- Import TensorFlow.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js" type="text/javascript"></script>
+    <!-- Load the coco-ssd model to use to recognize things in images -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+    
+    <!-- Import the page's JavaScript to do some stuff -->
+    <script src="js/script0.js" defer></script>
+  </body>
 </html>

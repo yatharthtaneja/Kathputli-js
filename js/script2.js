@@ -20,14 +20,29 @@
     
     // })();
 
-    
+    var dict2 ={
+      "cup": 3,
+      "spoon": 7,
+      "bottle": 50,
+      "remote": 120,
+    }
+
+    var dict ={
+      "cup": "img/Cup.glb",
+      "spoon": "img/spoon.glb",
+      "bottle": "img/Bottle.glb",
+      "remote": "img/remote.glb",
+    }
 
     init(); 
 
     function init() {
     
-        const MODEL_PATH ='img/Spoon.glb';
-        
+        // const MODEL_PATH ='img/Spoon.glb';
+        const MODEL_PATH =dict[params.char1];
+        const scale = dict2[params.char1];
+        globalVariable.char1 = params.char1;
+        console.log(scale);
         // Init the scene
         scene = new THREE.Scene();
 
@@ -88,7 +103,7 @@
 
           // Set the models initial scale
         // model.scale.set(130, 130, 130);
-        model.scale.set(7,7,7);
+        model.scale.set(scale,scale,scale);
 
 
         model.position.y = -11;
@@ -164,7 +179,7 @@
 
         }
         if(globalVariable.r12y >= globalVariable.r9y && globalVariable.r20y >= globalVariable.r9y && globalVariable.r9y>=0){
-            console.log(true)
+            // console.log(true)
             // model.rotation.y += 0.005;
             
             model.rotation.y += 0.05
@@ -176,12 +191,13 @@
           anim1.play();
           globalVariable.anim1bool = false;
         }
-        // if ( globalVariable.z1> 200) {
-
-        //   console.log(globalVariable.z1);
-        //   globalVariable.anim1bool = true;
-        // }
-
+        if(globalVariable.anim2bool)
+        {
+          anim2.setLoop(THREE.LoopOnce);
+          anim2.reset();
+          anim2.play();
+          globalVariable.anim2bool = false;
+        }
       }
       update();
 
@@ -216,45 +232,7 @@ function smooth(arr){
 
       }
 
-
-      function getMousePos(x1,y1) {
-        return { x: x1, y: y1 };
-      }
-
-      function getMousePoscoord(e) {
-        console.log(e.clientX, e.clientY );
-      }
-      
-      function moveJoint(x,y, joint, degreeLimit) {
-
-        let degrees = getMouseDegrees(x, y, degreeLimit);
-
-        joint.rotation.y = THREE.Math.degToRad(degrees.y);
-        joint.rotation.x = THREE.Math.degToRad(degrees.x);
-      }
-
-      function moveJoint2(x,y, joint) {
-
-
-        // joint.lookAt(x,y,100);
-        // joint.lookAt(x,y,100);
-
-        // const v = new THREE.Vector3(0,1,1);
-        // console.log((globalVariable.y2 - globalVariable.l8y )/ 720 * 360 );
-        console.log(joint.rotation.x ,joint.rotation.z );
-        // joint.rotateY(THREE.Math.degToRad((globalVariable.y2 - globalVariable.l8y )/ 720 * 360 ));
-        joint.rotateY(THREE.Math.degToRad(Math.PI / 2) );
-        
-        // isko koi nahi chedhega
-        // joint.rotation.z = -1.7;
-        // joint.rotation.x = 1.7;
-        // joint.rotation.y = 0.3;
-
-        joint.rotation.z = -1.7;
-        joint.rotation.x = 1.8;
-        joint.rotation.y = 0.3;
-        
-      }
+    
 
     function playOnClick() {
         // let anim = Math.floor(Math.random() * possibleAnims.length) + 0;
