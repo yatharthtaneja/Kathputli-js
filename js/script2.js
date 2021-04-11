@@ -176,11 +176,11 @@
           anim1.play();
           globalVariable.anim1bool = false;
         }
-        if ( globalVariable.z1> 200) {
+        // if ( globalVariable.z1> 200) {
 
-          console.log(globalVariable.z1);
-          globalVariable.anim1bool = true;
-        }
+        //   console.log(globalVariable.z1);
+        //   globalVariable.anim1bool = true;
+        // }
 
       }
       update();
