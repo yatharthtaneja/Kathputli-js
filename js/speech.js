@@ -37,6 +37,9 @@ if (annyang) {
       'go to *target': callbackf,
       'hello':  op3,
       'dance': dancespoon,
+      'danse': dancespoon,
+      'dance dance': dancespoon,
+      'danse danse': dancespoon
 
 
 
