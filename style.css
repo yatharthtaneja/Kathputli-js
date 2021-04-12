@@ -1,5 +1,5 @@
 html, body{
-  /* /* background-color: #0f1923; */
+  /* /* background-color: #460B2F; */
   background-color : #460B2F; 
   /* background: url(img/band3.jpg); */
   
@@ -137,14 +137,15 @@ opacity: 40%; */
   /* max-width: 240px; */
   /* height: 54px; */
   padding: 5px;
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 900;
-  color: #9A031E;
+  /* color: #E36414; */
+  color:#460B2F;
   text-align: center;
   text-transform: uppercase;
   text-decoration: none;
   position: relative;
-  margin: 0px 0;
+  margin-bottom: 0;
   font-family: samark;
 }
 .text1{
@@ -180,7 +181,7 @@ div a {
   text-align: center;
   text-transform: uppercase;
   text-decoration: none;
-  box-shadow: 0 0 0 1px inset rgba(236, 232, 225, 0.3);
+  box-shadow: 0 0 0 1px inset rgba(70, 11, 47, 0.6);
   position: relative;
   margin: 10px 0;
 }
@@ -189,7 +190,7 @@ div a.white:hover > p {
 }
 div a.white > p {
   background: #ece8e1;
-  color: #0f1923;
+  color: #460B2F;
 }
 div a.white > p span.base {
   border: 1px solid transparent;
@@ -201,7 +202,7 @@ div a.transparent:hover > p span.text {
   box-shadow: 0 0 0 1px #ece8e1;
 }
 div a.transparent > p {
-  background: #0f1923;
+  background: #460B2F;
   color: #ece8e1;
 }
 div a.transparent > p span.base {
@@ -212,7 +213,7 @@ div a:after, div a:before {
   width: 1px;
   position: absolute;
   height: 8px;
-  background: #0f1923;
+  background: #460B2F;
   left: 0;
   top: 50%;
   transform: translateY(-50%);
@@ -275,7 +276,7 @@ div a p span.text:after {
   height: 4px;
   right: 0;
   bottom: 0;
-  background: #0f1923;
+  background: #460B2F;
   position: absolute;
   transition: 0.3s ease-out all;
   z-index: 5;
@@ -291,7 +292,7 @@ div a:hover span.text:after {
 }
 
 .bg-rect{
-  background-color: #0f1923;
+  background-color: #460B2F;
   /* margin-right:5% ;
   margin-left: 10%;
 } */
