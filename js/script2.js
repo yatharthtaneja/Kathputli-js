@@ -22,10 +22,10 @@
     // })();
 
     var dict2 ={
-      "cup": 3,
-      "spoon": 7,
-      "bottle": 50,
-      "remote": 120,
+      "cup": 6,
+      "spoon": 14,
+      "bottle": 100,
+      "remote": 240,
     }
 
     var dict ={
@@ -56,7 +56,7 @@
         renderer = new THREE.WebGLRenderer({ alpha : true});
         renderer.shadowMap.enabled = true;
         renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.setSize(1066, 600);
+        renderer.setSize(1066, 900);
         renderer.setClearColor( 0x000000, 0 );
         container = document.getElementById('c').appendChild(renderer.domElement);
 
@@ -64,14 +64,14 @@
 
         // Add a camera
         camera = new THREE.PerspectiveCamera(
-            50,
-            window.innerWidth / window.innerHeight,
+            80,
+            1280/720,
             0.1,
             1000
         );
-        camera.position.z = 30 
+        camera.position.z = 80
         camera.position.x = 0;
-        camera.position.y = -3;
+        camera.position.y = -5;
 
 
         var loader = new THREE.GLTFLoader();
@@ -111,7 +111,7 @@
         model.scale.set(scale,scale,scale);
 
 
-        model.position.y = -11;
+        model.position.y = -20;
         model.rotation.y = 0.5
 
         // console.log(model.rotation.y)
@@ -167,13 +167,16 @@
         var tag = document.getElementById('c');
         tag.style.top = (globalVariable.y1+100) + 'px';
         tag.style.left = globalVariable.x1 + offsetx + 'px';
-        // console.log(waist)
+        console.log(globalVariable.dist1);
+  // const old_min = -350 , old_max = -75 , new_max = 2100 , new_min = 800;
+        camera.position.z = ( (-1* globalVariable.z1 - -150) / (-15-  -150) ) * (80 - 30) + 30
+
         if(neck && waist){
           // moveJoint2(globalVariable.x1, globalVariable.y1 , neck);
           checkJoint(globalVariable.y1- globalVariable.r16y, 1,waist);
           checkJoint(globalVariable.y1- globalVariable.r8y , -1 ,neck);
           // console.log(neck.rotation.x);
-
+          
 
         }
         if(globalVariable.r12y >= globalVariable.r9y && globalVariable.r20y >= globalVariable.r9y && globalVariable.r9y>=0){
