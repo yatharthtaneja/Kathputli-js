@@ -139,3 +139,4 @@ function predictWebcam() {
     window.requestAnimationFrame(predictWebcam);
   });
 }
+

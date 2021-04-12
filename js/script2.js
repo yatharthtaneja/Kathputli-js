@@ -13,7 +13,9 @@
       offsetx,                      // Animations found in our file
       mixer,                              // THREE.js animations mixer
       anim1,   
-      anim2,                            // Idle, the default state our character returns to
+      anim2,  
+      anim3, 
+      fileAnimations,                         // Idle, the default state our character returns to
       clock = new THREE.Clock(),          // Used for anims, which run to a clock instead of frame rate 
       currentlyAnimating = false,         // Used to check whether characters neck is being used in another anim
       raycaster = new THREE.Raycaster(),  // Used to detect the click on our character
@@ -81,7 +83,7 @@
         function(gltf) {
         // A lot is going to happen here
         model = gltf.scene;
-        let fileAnimations = gltf.animations;
+        fileAnimations = gltf.animations;
         // console.log(fileAnimations);
 
         model.traverse(o => {
@@ -123,8 +125,17 @@
         mixer = new THREE.AnimationMixer(model);
 
         console.log(fileAnimations);
-        anim1 = mixer.clipAction(fileAnimations[0]);
-        anim2 = mixer.clipAction(fileAnimations[1]);
+
+        if(globalVariable.char1 == "cup"){
+        // anim3 = mixer.clipAction(fileAnimations[2]);
+        let idleAnim = THREE.AnimationClip.findByName(fileAnimations, 'sad');
+        // console.log(idleAnim.tracks);
+        idleAnim.tracks.splice(21, 3);
+        idleAnim.tracks.splice(78, 3);
+        anim3 = mixer.clipAction(idleAnim);
+        anim3.play();
+
+        }
         console.log(anim1)
 
         },
@@ -167,7 +178,7 @@
         var tag = document.getElementById('c');
         tag.style.top = (globalVariable.y1+100) + 'px';
         tag.style.left = globalVariable.x1 + offsetx + 'px';
-        console.log(globalVariable.dist1);
+        // console.log(globalVariable.dist1);
   // const old_min = -350 , old_max = -75 , new_max = 2100 , new_min = 800;
         camera.position.z = ( (-1* globalVariable.z1 - -150) / (-15-  -150) ) * (80 - 30) + 30
 
@@ -187,24 +198,46 @@
         }
         if(globalVariable.anim1bool)
         {
-          anim1.setLoop(THREE.LoopOnce);
-          anim1.reset();
-          anim1.play();
+          console.log("scream: ", anim1);
+        anim1 = mixer.clipAction(fileAnimations[0]);
+
+
+        if(globalVariable.char1 == "cup"){
+          anim3.enabled = false;
+          playModifierAnimation(anim3, 0.25, anim1, 0.25);
+  
+          }
+          else{
+            anim1.setLoop(THREE.LoopOnce);
+            anim1.reset();
+            anim1.play();
+          }
+
+
           globalVariable.anim1bool = false;
         }
         if(globalVariable.anim2bool)
         {
-          anim2.setLoop(THREE.LoopOnce);
-          anim2.reset();
-          anim2.play();
+          anim2 = mixer.clipAction(fileAnimations[1]);
+
+          if(globalVariable.char1 == "cup"){
+            anim3.enabled = false;
+            playModifierAnimation(anim3, 0.25, anim2, 0.25);
+    
+          }
+          else{
+            anim2.setLoop(THREE.LoopOnce);
+            anim2.reset();
+            anim2.play();
+          }
           globalVariable.anim2bool = false;
         }
 
-        if(globalVariable.change)
-        {
-          change_char();
-          globalVariable.change = false;
-        }
+        // if(globalVariable.change)
+        // {
+        //   change_char();
+        //   globalVariable.change = false;
+        // }
       }
       update();
 
@@ -257,74 +290,85 @@ function smooth(arr){
           currentlyAnimating = false;
         }, to._clip.duration * 1000 - ((tSpeed + fSpeed) * 1000));
       }
-function change_char(){
-  scene.remove(model);
-  var temp = globalVariable.char1 ;
-  globalVariable.char1 = globalVariable.char3 ;
-  globalVariable.char3 = temp;
-  const MODEL_PATH =dict[globalVariable.char1];
-  const scale = dict2[globalVariable.char1];
 
-  var loader = new THREE.GLTFLoader();
+// function change_char(){
+//   scene.remove(model);
+//   var temp = globalVariable.char1 ;
+//   globalVariable.char1 = globalVariable.char3 ;
+//   globalVariable.char3 = temp;
+//   const MODEL_PATH =dict[globalVariable.char1];
+//   const scale = dict2[globalVariable.char1];
 
-  loader.load(
-  MODEL_PATH,
-  function(gltf) {
-  // A lot is going to happen here
-  model = gltf.scene;
-  let fileAnimations = gltf.animations;
-  // console.log(fileAnimations);
+//   var loader = new THREE.GLTFLoader();
 
-  model.traverse(o => {
+//   loader.load(
+//   MODEL_PATH,
+//   function(gltf) {
+//   // A lot is going to happen here
+//   model = gltf.scene;
+//   let fileAnimations = gltf.animations;
+//   // console.log(fileAnimations);
+
+//   model.traverse(o => {
       
-      if (o.isBone) {
-        // console.log(o.name);
-      }
+//       if (o.isBone) {
+//         // console.log(o.name);
+//       }
 
-      if (o.isMesh) {
-        o.castShadow = true;
-        o.receiveShadow = true;
-        // o.material = stacy_mtl;
-      }
-
-
-      if (o.isBone && o.name === 'mixamorigLeftShoulder') { 
-          neck = o;
-      }
-      if (o.isBone && o.name === 'mixamorigRightShoulder') { 
-        waist = o;
-    }
-
-  });
-
-    // Set the models initial scale
-  // model.scale.set(130, 130, 130);
-  model.scale.set(scale,scale,scale);
+//       if (o.isMesh) {
+//         o.castShadow = true;
+//         o.receiveShadow = true;
+//         // o.material = stacy_mtl;
+//       }
 
 
-  model.position.y = -11;
-  model.rotation.y = 0.5
+//       if (o.isBone && o.name === 'mixamorigLeftShoulder') { 
+//           neck = o;
+//       }
+//       if (o.isBone && o.name === 'mixamorigRightShoulder') { 
+//         waist = o;
+//     }
 
-  // console.log(model.rotation.y)
-  scene.add(model);
-  console.log("scene", scene);
+//   });
 
-  // loaderAnim.remove();
+//     // Set the models initial scale
+//   // model.scale.set(130, 130, 130);
+//   model.scale.set(scale,scale,scale);
 
-  mixer = new THREE.AnimationMixer(model);
 
-  console.log(fileAnimations);
-  anim1 = mixer.clipAction(fileAnimations[0]);
-  anim2 = mixer.clipAction(fileAnimations[1]);
-  console.log(anim1)
+//   model.position.y = -11;
+//   model.rotation.y = 0.5
 
-  },
-  undefined, // We don't need this function
-  function(error) {
-      console.error(error);
-  }
+//   // console.log(model.rotation.y)
+//   scene.add(model);
+//   console.log("scene", scene);
+
+//   // loaderAnim.remove();
+
+//   mixer = new THREE.AnimationMixer(model);
+
+//   console.log(fileAnimations);
+//   if(globalVariable.char1 == "cup"){
+//     // anim3 = mixer.clipAction(fileAnimations[2]);
+//     let idleAnim = THREE.AnimationClip.findByName(fileAnimations, 'sad');
+//     // console.log(idleAnim.tracks);
+//     idleAnim.tracks.splice(21, 3);
+//     // idleAnim.tracks.splice(24, 3);
+//     // idleAnim.tracks.splice(24, 3);
+//     // idleAnim.tracks.splice(78, 3);
+//     idleAnim.tracks.splice(78, 3);
+//     anim3 = mixer.clipAction(idleAnim);
+//     anim3.play();
+
+//     }
+
+//   },
+//   undefined, // We don't need this function
+//   function(error) {
+//       console.error(error);
+//   }
   
-  );
+//   );
 
 
-}
+// }
