@@ -92,8 +92,8 @@ if (annyang) {
 
     var commands = {
       'go to *target': callbackf,
-      'hello':  op3,
-
+      'bring bottle':  op3,
+      'change character':  op3,
       'two': anim2,
       'three': anim3,
       'four': anim4,

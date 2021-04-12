@@ -20,12 +20,12 @@
     
     // })();
 let offsetx = (window.innerWidth - 1280)/2
-    var dict2 ={
-      "cup": 3,
-      "spoon": 7,
-      "bottle": 50,
-      "remote": 120,
-    }
+var dict2 ={
+  "cup": 6,
+  "spoon": 14,
+  "bottle": 100,
+  "remote": 240,
+}
 
     var dict ={
       "cup": "img/Cup.glb",
@@ -50,7 +50,7 @@ let offsetx = (window.innerWidth - 1280)/2
         renderer = new THREE.WebGLRenderer({ alpha : true});
         renderer.shadowMap.enabled = true;
         renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.setSize(1066, 600);
+        renderer.setSize(1066, 900);
         renderer.setClearColor( 0x000000, 0 );
         container = document.getElementById('wrapper').appendChild(renderer.domElement);
 
@@ -58,14 +58,15 @@ let offsetx = (window.innerWidth - 1280)/2
 
         // Add a camera
         camera = new THREE.PerspectiveCamera(
-            50,
-            window.innerWidth / window.innerHeight,
-            0.1,
-            1000
-        );
-        camera.position.z = 30 
-        camera.position.x = 0;
-        camera.position.y = -3;
+          80,
+          1280/720,
+          0.1,
+          1000
+      );
+      camera.position.z = 80
+      camera.position.x = 0;
+      camera.position.y = -5;
+
 
 
         var loader = new THREE.GLTFLoader();
@@ -155,6 +156,7 @@ let offsetx = (window.innerWidth - 1280)/2
         var tag = document.getElementById('wrapper');
         tag.style.top = (globalVariable.y2+100) + 'px';
         tag.style.left = globalVariable.x2 +offsetx  + 'px';
+        camera.position.z = ( (-1* globalVariable.z2 - -150) / (-15-  -150) ) * (80 - 30) + 30
         // console.log(waist)
         if(neck && waist){
           // moveJoint2(globalVariable.x1, globalVariable.y1 , neck);
@@ -202,8 +204,6 @@ function smooth(arr){
   return sum / csize ;
 }
       function checkJoint(y, sign, joint){
-          // const old_min = -350 , old_max = -75 , new_max = 2100 , new_min = -1.5;
-          // joint.rotation.x=( (y - globalVariable.dist2*2) / (globalVariable.dist2*2 -  0) ) * (1.7 - (-1.5)) + (-1.5)
 
         temp =  ( (y - globalVariable.dist2*2) / (globalVariable.dist2*2 -  0) ) * (1.7 - (-1.5)) + (-1.5)
         // temp =  ( (y -globalVariable.dist2y*2) / (globalVariable.dist2y*2 -  0) ) * (1.7 - (-1.7)) + (-1.7)
@@ -214,15 +214,6 @@ function smooth(arr){
         // else if (temp < -1.5)
 
         joint.rotation.x = -1* temp.toFixed(4);
-        // console.log(joint.name , globalVariable.dist2y*2 )
-
-        // arr[i++] = temp ;
-        // if (i== csize ){
-        //   i=0;
-        //   joint.rotation.x = smooth(arr);
-        //   arr =new Array(csize) ;
-        // }
-        // console.log( "x: ", joint.rotation.x)
         joint.rotation.z = sign * 0.9;
         joint.rotation.y = -1 * sign * 0.3;
 
@@ -247,14 +238,6 @@ function smooth(arr){
 
       function moveJoint2(x,y, joint) {
 
-
-        // joint.lookAt(x,y,100);
-        // joint.lookAt(x,y,100);
-
-        // const v = new THREE.Vector3(0,1,1);
-        // console.log((globalVariable.y2 - globalVariable.l8y )/ 720 * 360 );
-        // console.log(joint.rotation.x ,joint.rotation.z );
-        // joint.rotateY(THREE.Math.degToRad((globalVariable.y2 - globalVariable.l8y )/ 720 * 360 ));
         joint.rotateY(THREE.Math.degToRad(Math.PI / 2) );
         
         // isko koi nahi chedhega
