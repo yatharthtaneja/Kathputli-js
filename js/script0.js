@@ -5,7 +5,7 @@ const enableWebcamButton1 = document.getElementById('webcamButton1');
 const enableWebcamButton2 = document.getElementById('webcamButton2');
 const enableWebcamButton3 = document.getElementById('webcamButton3');
 
-var offset = window.innerWidth/6 + 680;
+var offset = window.innerWidth/12 * 8 + 680;
 var dict ={
   "cup": "img/Cup.glb",
   "spoon": "img/spoon.glb",
