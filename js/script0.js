@@ -4,6 +4,7 @@ const demosSection = document.getElementById('demos');
 const enableWebcamButton1 = document.getElementById('webcamButton1');
 const enableWebcamButton2 = document.getElementById('webcamButton2');
 const enableWebcamButton3 = document.getElementById('webcamButton3');
+
 var offset = window.innerWidth/6 + 680;
 var dict ={
   "cup": "img/Cup.glb",
@@ -31,6 +32,8 @@ function getUserMediaSupported() {
   // Enable the live webcam view and start classification.
 function enableCam(event) {
     // Only continue if the COCO-SSD has finished loading.
+    document.getElementById("inst").classList.add("removed");
+
     if (!model) {
       return;
     }

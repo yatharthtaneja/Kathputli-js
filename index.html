@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Import the webpage's stylesheet -->
-    <link rel="stylesheet" href="skeleton.css">
+    <!-- <link rel="stylesheet" href="skeleton.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
     <link rel="stylesheet" href="style.css">
 
 
@@ -15,20 +16,62 @@
   <body>
     <!-- <p>Wait for the model to load before clicking the button to enable the webcam - at which point it will become visible to use.</p> -->
     <div class="container">
-      <div class="row">
+      <div class="columns is-vcentered ">
 
-        <div class="ten columns ">
+        <div class="column is-8 ">
           <!-- <section id="demos" class="invisible"> -->
+            <div id = "inst" >
+               <img src="img/puppet.png"   >
+            </div>
             <div id="liveView" class="camView">
-              <video id="webcam" autoplay width=auto height="680px"></video>
+              <video id="webcam" autoplay height=auto width="1080px"></video>
             </div>
           <!-- </section> -->
         </div>
+<div class="column is-1"></div>
+        <div class="column is-3">
 
-        <div class="two columns">
+
+          <div class="card has-text-centered">
+            <div class="card-image ">
+              <figure class="image has-text-centered" >
+                <img src="img/puppet.png" alt="Placeholder image" style="width: 140px;height: auto ; padding: 10% 0 10% 0;">
+              </figure>
+            </div>
+          <!-- <img src="img/puppet.png"  style="width: 140px;height: auto ;"> -->
+           
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                </div>
+                <!-- <div class="media-content">
+                  <p class="title is-4 is-centered Heading">Kathputli</p>
+                  <p class="subtitle is-6">An AR Puppetry Experience</p>
+                </div> -->
+              </div>
+          
+              <div class="content" style="margin-top: -25px;">
+                <p class="title  is-centered Heading">Kathputli</p>
+                <p class="subtitle is-6">An AR Puppetry Experience</p>
+                <div class="div1">
+                  <a class="white" href="#" id="webcamButton1">
+                    <p><span class="bg"></span><span class="base"></span><span class="text">Scan Character 1</span></p></a>
+                    <a class="white" href="#" id="webcamButton2">
+                      <p><span class="bg"></span><span class="base"></span><span class="text">Scan Character 2</span></p></a>
+                      <a class="white" href="#" id="webcamButton3">
+                        <p><span class="bg"></span><span class="base"></span><span class="text">Scan Character 3</span></p></a>
+        
+                  <a class="white"   href="play.html" onclick="location.href=this.href+'?char1='+ globalVariable.char1 + '&char2='+ globalVariable.char2 + '&char3='+ globalVariable.char3 ;return false;">
+                    <p><span class="bg"></span><span class="base"></span><span class="text">play</span></p></a>
+                  </div>
+
+              </div>
+            </div>
+          </div>
+
 
           <!-- <a id="webcamButton1">Scan Character One</a> -->
-          <img src="img/puppet.png" alt="Italian Trulli" style="width: 140px;height: auto ;padding-top: 30%;">
+          <!-- <img src="img/puppet.png"  style="width: 140px;height: auto ;padding-top: 30%;">
           <h1 class="Heading">Kathputli</h1>
           <p class="text1">An AR Puppetry Experience</p>
           <div class="div1">
@@ -41,11 +84,11 @@
 
           <a class="white"   href="play.html" onclick="location.href=this.href+'?char1='+ globalVariable.char1 + '&char2='+ globalVariable.char2 + '&char3='+ globalVariable.char3 ;return false;">
             <p><span class="bg"></span><span class="base"></span><span class="text">play</span></p></a>
-          </div>
+          </div> -->
+
+
         </div>
 
-
-    
       </div>
   </div>
     <!-- Import TensorFlow.js library -->
