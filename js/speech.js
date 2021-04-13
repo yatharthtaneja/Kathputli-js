@@ -117,8 +117,6 @@ if (annyang) {
       "so she made fun": bottlemakefun,
       "so she made fun of Cup's": bottlemakefun,  
       "fun": bottlemakefun
-
-
     };
 
     annyang.debug();
