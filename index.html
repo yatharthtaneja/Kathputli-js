@@ -1,36 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Multiple object detection using pre trained model in TensorFlow.js</title>
+    <title>Kathputli</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Import the webpage's stylesheet -->
-    <!-- <link rel="stylesheet" href="skeleton.css"> -->
+    <!-- Importing the webpage's stylesheet -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
     <link rel="stylesheet" href="style.css">
-
 
     <script src="js/char.js"></script>
   </head>  
   <body>
-    <!-- <p>Wait for the model to load before clicking the button to enable the webcam - at which point it will become visible to use.</p> -->
     <div class="container">
+
       <div class="columns  ">
 
         <div class="column is-8 ">
-          <!-- <section id="demos" class="invisible"> -->
             <div id = "inst" >
                <img src="img/instruc.png"   >
             </div>
             <div id="liveView" class="camView">
               <video id="webcam" autoplay height=auto width="1080px"></video>
             </div>
-          <!-- </section> -->
         </div>
-        <div class="column is-1"></div>
-        <div class="column is-3">
 
+        <div class="column is-1"></div>
+
+        <div class="column is-3">
 
           <div class="card has-text-centered">
             <div class="card-image ">
@@ -38,57 +35,33 @@
                 <img src="img/puppet.png" alt="Placeholder image" style="width: 140px;height: auto ; padding: 10% 0 10% 0;">
               </figure>
             </div>
-          <!-- <img src="img/puppet.png"  style="width: 140px;height: auto ;"> -->
-           
+
             <div class="card-content">
-          
               <div class="content" style="margin-top: -25px;">
                 <p class="title  is-centered Heading" style="margin-bottom: 0px; margin-top: 10%;">Kathputli</p>
                 <p class="subtitle is-6" style="margin-top: 0px; color: #9A031E; font-weight: bold;">An AR Puppetry Experience</p>
                 <div class="div1">
                   <a class="white" href="#" id="webcamButton1">
-                    <p><span class="bg"></span><span class="base"></span><span class="text">Scan Character 1</span></p></a>
-                    <a class="white" href="#" id="webcamButton2">
-                      <p><span class="bg"></span><span class="base"></span><span class="text">Scan Character 2</span></p></a>
-                      <a class="white" href="#" id="webcamButton3">
-                        <p><span class="bg"></span><span class="base"></span><span class="text">Scan Character 3</span></p></a>
-        
+                  <p><span class="bg"></span><span class="base"></span><span class="text">Scan Character 1</span></p></a>
+                  <a class="white" href="#" id="webcamButton2">
+                  <p><span class="bg"></span><span class="base"></span><span class="text">Scan Character 2</span></p></a>
+                  <a class="white" href="#" id="webcamButton3">
+                  <p><span class="bg"></span><span class="base"></span><span class="text">Scan Character 3</span></p></a>
                   <a class="white"   href="play.html" onclick="location.href=this.href+'?char1='+ globalVariable.char1 + '&char2='+ globalVariable.char2 + '&char3='+ globalVariable.char3 ;return false;">
-                    <p><span class="bg"></span><span class="base"></span><span class="text">play</span></p></a>
-                  </div>
-
+                  <p><span class="bg"></span><span class="base"></span><span class="text">play</span></p></a>
+                </div>
               </div>
             </div>
+
           </div>
-
-
-          <!-- <a id="webcamButton1">Scan Character One</a> -->
-          <!-- <img src="img/puppet.png"  style="width: 140px;height: auto ;padding-top: 30%;">
-          <h1 class="Heading">Kathputli</h1>
-          <p class="text1">An AR Puppetry Experience</p>
-          <div class="div1">
-          <a class="white" href="#" id="webcamButton1">
-            <p><span class="bg"></span><span class="base"></span><span class="text">Scan Character 1</span></p></a>
-            <a class="white" href="#" id="webcamButton2">
-              <p><span class="bg"></span><span class="base"></span><span class="text">Scan Character 2</span></p></a>
-              <a class="white" href="#" id="webcamButton3">
-                <p><span class="bg"></span><span class="base"></span><span class="text">Scan Character 3</span></p></a>
-
-          <a class="white"   href="play.html" onclick="location.href=this.href+'?char1='+ globalVariable.char1 + '&char2='+ globalVariable.char2 + '&char3='+ globalVariable.char3 ;return false;">
-            <p><span class="bg"></span><span class="base"></span><span class="text">play</span></p></a>
-          </div> -->
-
-
         </div>
-
       </div>
   </div>
-    <!-- Import TensorFlow.js library -->
+    <!-- Importing TensorFlow.js library -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js" type="text/javascript"></script>
-    <!-- Load the coco-ssd model to use to recognize things in images -->
+    <!-- Loading the coco-ssd model to use to recognize things in images -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
-    
-    <!-- Import the page's JavaScript to do some stuff -->
+    <!-- Importing the page's JavaScript -->
     <script src="js/script0.js" defer></script>
   </body>
 </html>
