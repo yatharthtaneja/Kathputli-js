@@ -74,9 +74,7 @@ if (annyang) {
     }
 
    var op3 = function() {
-     var msg = new SpeechSynthesisUtterance();
-    msg.text = "Hey!";
-    window.speechSynthesis.speak(msg);
+  
     globalVariable.change = true;
 
   }
@@ -102,12 +100,19 @@ if (annyang) {
       '4': anim4,
       "screamed" : cupscream,
       "drop" : cupdrop,
+      "dropping" : cupdrop,
       "scream" : cupscream,
       "screen" : cupscream,
       "backbend" : spoondance,
+      "backbending" : spoondance,
+      "backbending skills" : spoondance,
       "talk": talkingspoon,
+      "tried to talk to her": talkingspoon,
+      "try to talk to her": talkingspoon,
       "crying": bottlecrying,
       "make fun": bottlemakefun,
+      "made fun": bottlemakefun,
+      "so she made fun": bottlemakefun,
       "fun": bottlemakefun
 
 
