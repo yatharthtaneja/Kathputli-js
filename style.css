@@ -116,8 +116,7 @@ opacity: 40%; */
   z-index: 10;
 }
 #inst{
-  z-index: 1;
-  position: absolute;
+margin: 0;
 }
 
 /* button */
@@ -305,6 +304,8 @@ div a:hover span.text:after {
 }
 .container{
   padding-top: 2%;
+  margin: auto;
+  vertical-align: middle;
 }
 .card-image{
  background-color: #9A031E;
