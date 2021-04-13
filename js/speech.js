@@ -101,18 +101,21 @@ if (annyang) {
       "screamed" : cupscream,
       "drop" : cupdrop,
       "dropping" : cupdrop,
+      "dropping the cup and saucer down" : cupdrop,
       "scream" : cupscream,
       "screen" : cupscream,
       "backbend" : spoondance,
       "backbending" : spoondance,
       "backbending skills" : spoondance,
+      "with his exceptional backbending skills" : spoondance,  
       "talk": talkingspoon,
-      "tried to talk to her": talkingspoon,
+      "and tried to talk to her": talkingspoon,
       "try to talk to her": talkingspoon,
       "crying": bottlecrying,
       "make fun": bottlemakefun,
       "made fun": bottlemakefun,
       "so she made fun": bottlemakefun,
+      "so she made fun of Cup's": bottlemakefun,  
       "fun": bottlemakefun
 
 
