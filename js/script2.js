@@ -27,7 +27,7 @@
       "cup": 6,
       "spoon": 14,
       "bottle": 100,
-      "remote": 240,
+      "remote": 2,
     }
 
     var dict ={

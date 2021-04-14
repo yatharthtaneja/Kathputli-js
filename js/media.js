@@ -26,9 +26,10 @@ for (let index = 0; index < results.multiHandLandmarks.length; index++) {
   drawLandmarks(canvasCtx, landmarks, {
     color: isRightHand ? '#F8EEE7' : '#F8EEE7',
     fillColor: isRightHand ? '#F8EEE7' : '#F8EEE7',
-    radius: (x) => {
-      return lerp(x.from.z, -0.15, .1, 10, 1);
-    }
+    radius: 2
+    // radius: (x) => {
+    //   return lerp(x.from.z, -0.15, .1, 10, 1);
+    // }
   });
 }
 
