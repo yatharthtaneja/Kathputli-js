@@ -76,6 +76,8 @@ if (annyang) {
    var op3 = function() {
   
     globalVariable.change = true;
+    globalVariable.change2 = true;
+
 
   }
     var pause = function() {

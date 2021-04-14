@@ -22,10 +22,10 @@ for (let index = 0; index < results.multiHandLandmarks.length; index++) {
   const landmarks = results.multiHandLandmarks[index];
   drawConnectors(
       canvasCtx, landmarks, HAND_CONNECTIONS,
-      {color: isRightHand ? '#161616' : '#161616'}),
+      {color: isRightHand ? '#FBE5CD' : '#FBE5CD'}),
   drawLandmarks(canvasCtx, landmarks, {
-    color: isRightHand ? '#EAEDED' : '#EAEDED',
-    fillColor: isRightHand ? '#EAEDED' : '#EAEDED',
+    color: isRightHand ? '#F8EEE7' : '#F8EEE7',
+    fillColor: isRightHand ? '#F8EEE7' : '#F8EEE7',
     radius: (x) => {
       return lerp(x.from.z, -0.15, .1, 10, 1);
     }
