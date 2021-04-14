@@ -176,7 +176,7 @@
         requestAnimationFrame(update);
 
         var tag = document.getElementById('c');
-        tag.style.top = (globalVariable.y1+100) + 'px';
+        tag.style.top = (globalVariable.y1+300) + 'px';
         tag.style.left = globalVariable.x1 + offsetx + 'px';
         // console.log(globalVariable.dist1);
   // const old_min = -350 , old_max = -75 , new_max = 2100 , new_min = 800;
