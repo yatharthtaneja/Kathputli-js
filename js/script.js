@@ -165,7 +165,7 @@ var dict2 ={
         requestAnimationFrame(update);
 
         var tag = document.getElementById('wrapper');
-        tag.style.top = (globalVariable.y2+300) + 'px';
+        tag.style.top = (globalVariable.y2+100) + 'px';
         tag.style.left = globalVariable.x2 +offsetx  + 'px';
         camera.position.z = ( (-1* globalVariable.z2 - -150) / (-15-  -150) ) * (80 - 30) + 30
         // console.log(waist)
