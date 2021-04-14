@@ -24,9 +24,9 @@
     // })();
 
     var dict2 ={
-      "cup": 6,
-      "spoon": 14,
-      "bottle": 100,
+      "cup": 4,
+      "spoon": 10,
+      "bottle": 80,
       "remote": 2,
     }
 
