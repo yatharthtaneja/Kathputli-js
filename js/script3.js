@@ -58,7 +58,7 @@
         renderer = new THREE.WebGLRenderer({ alpha : true});
         renderer.shadowMap.enabled = true;
         renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.setSize(400, 400);
+        renderer.setSize(window.innerWidth * 2/17, window.innerWidth * 4/17);
         renderer.setClearColor( 0x000000, 0 );
         container = document.getElementById('char3').appendChild(renderer.domElement);
 
@@ -114,7 +114,8 @@
 
 
         model.position.y = -20;
-        model.rotation.y = 0.5
+        model.position.x = 15;
+        model.rotation.y = -0.5
 
         // console.log(model.rotation.y)
         scene.add(model);
