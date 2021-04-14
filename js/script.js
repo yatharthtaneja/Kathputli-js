@@ -36,10 +36,19 @@ var dict2 ={
       "remote": "img/remote.glb",
     }
 
+    var dict3 ={
+      "cup": "img/Cup.png",
+      "spoon": "img/spoon.png",
+      "bottle": "img/bottle.png",
+      "remote": "img/remote.png",
+    }
+
     init(); 
 
     function init() {
     
+      document.getElementById('change-image')
+        .src=dict3[params.char3];
         // const MODEL_PATH ='img/remote.glb';
         const MODEL_PATH =dict[params.char2];
         const scale = dict2[params.char2];
@@ -305,11 +314,14 @@ function smooth(arr){
 
       function change_char(){
         scene.remove(model);
+
+
         var temp = globalVariable.char2 ;
         globalVariable.char2 = globalVariable.char3 ;
         globalVariable.char3 = temp;
         const MODEL_PATH =dict[globalVariable.char2];
         const scale = dict2[globalVariable.char2];
+        document.getElementById('change-image').src=dict3[globalVariable.char3];
       
         var loader = new THREE.GLTFLoader();
       
