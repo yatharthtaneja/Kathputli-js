@@ -18,7 +18,7 @@ The project was developed as part of coursework of the Designing Interactive Sys
 
    Click on <u>Scan Character</u> to scan daily live objects. You can scan up to three objects and AR characters inspired by those objects will available to you. Currently AR characters for  4 daily life objects are implemented: *Spoon, Cup, Bottle and Remote.*
 
-   <img src = "[img](https://github.com/yatharthtaneja/Kathputli-js/tree/main/img)/**Kathputli _ An AR Puppetry Experience 0-41 screenshot.png**">
+   <img src = "img/Kathputli _ An AR Puppetry Experience 0-41 screenshot.png">
 
 2. ### Click Play
 
@@ -28,7 +28,7 @@ The project was developed as part of coursework of the Designing Interactive Sys
    - Ring finger controls the right arm of the character
    - Rotate the character by making a fist
 
-   ![[img](https://github.com/yatharthtaneja/Kathputli-js/tree/main/img)/**Kathputli _ An AR Puppetry Experience 2-38 screenshot.png**]()
+   <img src = "img/Kathputli _ An AR Puppetry Experience 2-38 screenshot.png">
 
 3. ### Use voice ques
 
