@@ -4,7 +4,7 @@ Created by: [Aditi Gupta](https://github.com/itida99), [Ayush Misra](https://git
 
 ## Overview
 
-**KathPutli** is an AR Puppetry experience developed in Java. The AR characters are inspired by real life objects and have animations that can be triggered by voice cues. Currently the project is a working prototype and hence have limited characters and voice cues.
+**KathPutli** is an AR Puppetry experience developed in JavaScript. The AR characters are inspired by real life objects and have animations that can be triggered by voice cues. Currently the project is a working prototype and hence have limited characters and voice cues.
 
 The project was developed as part of coursework of the Designing Interactive Systems course at IIIT Delhi.
 
